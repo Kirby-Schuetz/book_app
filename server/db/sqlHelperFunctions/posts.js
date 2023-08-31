@@ -38,4 +38,4 @@ const getPostsById = async (post_id) => {
     }
 }
 
-module.exports = { createPosts, getPostsById }
+module.exports = { createPost, getPostsById }
