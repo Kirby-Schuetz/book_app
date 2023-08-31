@@ -1,7 +1,7 @@
 const { Client } = require('pg')
 
-const library = 'library'
+const postgres = 'postgres'
 
-const client = new Client(`postgres://localhost:5497/${library}`)
+const client = new Client(`postgres://localhost:5497/${postgres}`)
 
 module.exports = client

@@ -1,9 +1,9 @@
 // pull in connection to my local database
 const client = require('./client')
 
-const { createUser, getAllUsers } = require('./helpers/users')
-const { createPost, getPostsById } = require('./helpers/posts')
-const { createLike } = require('./helpers/likes')
+const { createUser, getAllUsers } = require('./sqlHelperFunctions/users')
+const { createPost, getPostsById } = require('./sqlHelperFunctions/posts')
+const { createLike } = require('./sqlHelperFunctions/likes')
 
 const { users, posts, likes } = require('./seedData')
 
@@ -34,20 +34,20 @@ const createTables = async () => {
         password varchar(30) NOT NULL,
         first_name varchar NOT NULL,
         last_name varchar,
-        email varchar NOT NULL,
+        email varchar NOT NULL
     );
     CREATE TABLE posts (
         post_id SERIAL PRIMARY KEY NOT NULL,
-        book_image image,
+        book_image varchar,
         book_title varchar UNIQUE NOT NULL,
         book_author varchar NOT NULL,
         book_summary varchar,
-        user_id INTEGER REFERENCES user(user_id)
+        user_id INTEGER REFERENCES users(user_id)
     );
-    CREATE TABLE  likes (
+    CREATE TABLE likes (
         like_id SERIAL PRIMARY KEY,
-        user_id INTEGER REFERENCES user(user_id),
-        post_id INTEGER REFERENCES post(post_id),
+        user_id INTEGER REFERENCES users(user_id),
+        post_id INTEGER REFERENCES posts(post_id)
     )
     `)
     console.log("tables are built")
