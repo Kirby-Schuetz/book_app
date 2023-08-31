@@ -1,3 +1,5 @@
+// arrays of object based on schema design 
+
 const users = [
     { user_id: 1, username: 'MysticalMort', password: 'mystical',first_name: 'Morticia', last_name: 'Addams', email: 'mystical.morticia@email.com'},
     {user_id: 2, username: 'HauntedHessian', password: 'haunted', first_name: 'Ichabod', last_name: 'Crane', email: 'haunted.ichabod@email.com'},
@@ -19,10 +21,10 @@ const posts = [
 ]
 
 const likes = [
-    {likes_id: 1, user_id: 1, post_id: 1},
-    {likes_id: 2, user_id: 3, post_id: 3},
-    {likes_id: 3, user_id: 4, post_id: 4},
-    {likes_id: 4, user_id: 5, post_id: 5}
+    {like_id: 1, user_id: 1, post_id: 1},
+    {like_id: 2, user_id: 3, post_id: 3},
+    {like_id: 3, user_id: 4, post_id: 4},
+    {like_id: 4, user_id: 5, post_id: 5}
 ]
 
 module.exports = { users, posts, likes }

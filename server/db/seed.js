@@ -1,8 +1,9 @@
+// pull in connection to my local database
 const client = require('./client')
 
 const { createUser, getAllUsers } = require('./helpers/users')
 const { createPost, getPostsById } = require('./helpers/posts')
-const { createLikes } = require('./helpers/likes')
+const { createLike } = require('./helpers/likes')
 
 const { users, posts, likes } = require('./seedData')
 
@@ -36,15 +37,15 @@ const createTables = async () => {
         email varchar NOT NULL,
     );
     CREATE TABLE posts (
-        post_id SERIAL PRIMARY KEY,
+        post_id SERIAL PRIMARY KEY NOT NULL,
         book_image image,
-        book_title varchar,
-        book_author varchar,
+        book_title varchar UNIQUE NOT NULL,
+        book_author varchar NOT NULL,
         book_summary varchar,
         user_id INTEGER REFERENCES user(user_id)
     );
     CREATE TABLE  likes (
-        likes_id SERIAL PRIMARY KEY,
+        like_id SERIAL PRIMARY KEY,
         user_id INTEGER REFERENCES user(user_id),
         post_id INTEGER REFERENCES post(post_id),
     )
@@ -60,7 +61,7 @@ const createInitialUsers = async () => {
         // looping through "users" array from seedData
         for (const user of users) {
             // insert each user into the table
-            await createInitialUser(user)
+            await createUser(user)
         }
         console.log("created users")
     } catch (error) {
@@ -74,9 +75,9 @@ const createInitialPosts = async () => {
         // looping through "posts" array from seedData
         for (const post of posts) {
             // insert each post into the table
-            await createInitialPost(post)
+            await createPost(post)
         }
-        console.log("create posts")
+        console.log("created posts")
     } catch (error) {
         throw error
     }
@@ -87,8 +88,8 @@ const createInitialLikes = async () => {
     try {
         // looping through "likes" array from seedData
         for (const like of likes) {
-            // insert each post into the table
-            await createInitialLikes(like)
+            // insert each like into the table
+            await createLike(like)
         }
         console.log("created likes")
     } catch (error) {
