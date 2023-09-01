@@ -22,20 +22,40 @@ const createPost = async ({ post_id, book_image, book_title, book_author, book_s
     }
 }
 
-const getPostsById = async (post_id) => {
+const getPostById = async (post_id) => {
+    const query = `SELECT * FROM posts WHERE post_id = $1`;
+    const values = [post_id];
+
     try {
-        const { 
-            rows: [posts]
-         } 
-        = await client.query(`
-        SELECT *
-        FROM posts
-        WHERE post_id = ${post_id};
-        `)
-        return posts
+        const result = await client.query(query, values);
+        let record = result.rows[0];
+        record.book_image = _bytesToString(record.book_image);
+        return record;
     } catch (error) {
         throw error
     }
 }
 
-module.exports = { createPost, getPostsById }
+const getAllPosts = async () => {
+    try {
+        const { rows }
+        = await client.query(`
+        SELECT *
+        FROM posts;
+        `)
+        for (const row of rows) {
+            row.book_image = _bytesToString(row.book_image);
+        }
+        return rows;
+    } catch (error) {
+        throw error
+    }
+}
+
+const _bytesToString = (bytes) => {
+    const buffer = Buffer.from(bytes);
+    const string = buffer.toString();
+    return string;
+}
+
+module.exports = { createPost, getPostById, getAllPosts }

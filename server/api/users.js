@@ -2,14 +2,14 @@
 const express = require('express');
 const router = express.Router();
 
-// import the SQL helper function from 'db'
-router.use('/users', require('../db/sqlHelperFunctions/users'));
+// import the user SQL helper function from 'db' folder
+const { createUser, getAllUsers } = require('../db/sqlHelperFunctions/users');
 
 // GET request for all users
 router.get('/', async (req, res, next) => {
     try{
         const users = await getAllUsers();
-        res.send(posts);
+        res.send(users);
     } catch (error) {
         next(error);
     }

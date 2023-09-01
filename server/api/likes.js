@@ -2,8 +2,8 @@
 const express = require('express');
 const router = express.Router();
 
-// import the SQL helper function from 'db'
-router.use('/likes', require('../db/sqlHelperFunctions/likes'));
+// import the user SQL helper function from 'db' folder
+const { createLike, getLikeById, getAllLikes } = require('../db/sqlHelperFunctions/likes');
 
 // GET request for all likes
 router.get('/', async (req, res, next) => {

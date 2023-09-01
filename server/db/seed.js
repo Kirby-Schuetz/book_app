@@ -38,7 +38,7 @@ const createTables = async () => {
     );
     CREATE TABLE posts (
         post_id SERIAL PRIMARY KEY,
-        book_image bytea,
+        book_image varchar,
         book_title varchar UNIQUE NOT NULL,
         book_author varchar NOT NULL,
         book_summary varchar,
