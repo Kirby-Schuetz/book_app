@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 
 // import the SQL helper function from 'db'
-router.use('/users', require('./db/sqlHelperFunctions/users'));
+router.use('/users', require('../db/sqlHelperFunctions/users'));
 
 // GET request for all users
 router.get('/', async (req, res, next) => {
