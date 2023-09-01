@@ -12,9 +12,9 @@ const dropTables = async () => {
     try {
         console.log("starting to drop tables")
         await client.query(`
-        DROP TABLE IF EXISTS users;
-        DROP TABLE IF EXISTS posts;
         DROP TABLE IF EXISTS likes;
+        DROP TABLE IF EXISTS posts;
+        DROP TABLE IF EXISTS users;
         `)
         console.log("tables dropped")
     } catch (error) {
@@ -37,7 +37,7 @@ const createTables = async () => {
         email varchar NOT NULL
     );
     CREATE TABLE posts (
-        post_id SERIAL PRIMARY KEY NOT NULL,
+        post_id SERIAL PRIMARY KEY,
         book_image bytea,
         book_title varchar UNIQUE NOT NULL,
         book_author varchar NOT NULL,

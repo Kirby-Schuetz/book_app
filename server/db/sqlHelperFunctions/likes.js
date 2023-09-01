@@ -5,7 +5,7 @@ const createLike = async ({ like_id, user_id, post_id }) => {
         const {
             rows: [like],
         } = await client.query (
-            `INSERT INTO like(like_id, user_id, post_id)
+            `INSERT INTO likes(like_id, user_id, post_id)
              VALUES($1, $2, $3)
              RETURNING *;
             `,

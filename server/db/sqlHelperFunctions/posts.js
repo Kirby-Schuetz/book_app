@@ -16,7 +16,7 @@ const createPost = async ({ post_id, book_image, book_title, book_author, book_s
             // dependency array to hook up the parameters to the variables
             [post_id, book_image, book_title, book_author, book_summary, user_id]
         )
-        return trainer
+        return post
     } catch (error) {
         throw error
     }
