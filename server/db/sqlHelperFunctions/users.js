@@ -50,6 +50,47 @@ const getUserById = async (user_id) => {
         throw error
     }
 }
+const updateUser = async (user_id, updatedUserData) => {
+    try {
+        const { rows: [user], }
+        = await client.query(`
+        UPDATE users 
+        SET 
+        username = $1, 
+        password = $2, 
+        first_name = $3, 
+        last_name = $4, 
+        email = $5 
+        WHERE user_id = ${user_id}
+        RETURNING *;
+        `,
+        [
+            updatedUserData.username,
+            updatedUserData.password,
+            updatedUserData.first_name,
+            updatedUserData.last_name,
+            updatedUserData.email            
+        ]
+        );
+         return user;
+        } catch (error) {
+         throw error;
+    }
+}
+
+const deleteUser = async (user_id) => {
+    try {
+        const { rows: [user], }
+        = await client.query(`
+        DELETE 
+        FROM users
+        WHERE user_id = ${user_id};
+        `);
+         return user;
+        } catch (error) {
+         throw error;
+    }
+}
 
 
-module.exports = { createUser, getAllUsers, getUserById }
+module.exports = { createUser, getAllUsers, getUserById, updateUser, deleteUser }

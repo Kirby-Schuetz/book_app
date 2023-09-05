@@ -46,4 +46,19 @@ const getAllLikes = async () => {
     }
 }
 
-module.exports = { createLike, getLikeById, getAllLikes }
+const unLike = async (like_id) => {
+    try {
+        const { rows: [like], }
+        = await client.query(`
+        DELETE 
+        FROM likes
+        WHERE like_id = ${like_id}
+        RETURNING *;
+        `);
+         return like;
+        } catch (error) {
+         throw error;
+    }
+}
+
+module.exports = { createLike, getLikeById, getAllLikes, unLike }

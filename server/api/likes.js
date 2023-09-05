@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 
 // import the user SQL helper function from 'db' folder
-const { createLike, getLikeById, getAllLikes } = require('../db/sqlHelperFunctions/likes');
+const { createLike, getLikeById, getAllLikes, unLike } = require('../db/sqlHelperFunctions/likes');
 
 // GET request for all likes
 router.get('/', async (req, res, next) => {
@@ -48,7 +48,7 @@ router.put('/:like_id', async (req, res, next) => {
 // DELETE request to delete like by id
 router.delete('/:like_id', async (req, res, next) => {
     try{
-        const like = await deleteLike(req.params.like_id);
+        const like = await unLike(req.params.like_id);
         res.send(like);
     } catch (error) {
         next(error);
