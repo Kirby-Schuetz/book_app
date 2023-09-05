@@ -7,6 +7,9 @@ const client = require('./db/client');
 // connect to client
 client.connect();
 
+
+app.use(express.json());
+
 // base route that returns "hello world"
 app.get('/', (req, res) => {
     res.send('Hello World!');

@@ -1,6 +1,6 @@
 const client = require('../client')
 
-const createUser = async ({ user_id, username, password, first_name, last_name, email }) => {
+const createUser = async ({ username, password, first_name, last_name, email }) => {
     try {
         const {
             rows: [user],
@@ -9,12 +9,12 @@ const createUser = async ({ user_id, username, password, first_name, last_name, 
             // INSERT into table(column1, column2, column3)
             // VALUES(var1, var2)
             // RETURNING everything
-            ` INSERT INTO users(user_id, username, password, first_name, last_name, email)
-              VALUES($1, $2, $3, $4, $5, $6)
+            ` INSERT INTO users (username, password, first_name, last_name, email)
+              VALUES($1, $2, $3, $4, $5)
               RETURNING *;
             `,
             // dependency array to hook up the parameters to the variables
-            [user_id, username, password, first_name, last_name, email]
+            [username, password, first_name, last_name, email]
         )
             return user
     } catch (error) {
@@ -35,4 +35,21 @@ const getAllUsers = async () => {
     }
 }
 
-module.exports = { createUser, getAllUsers }
+const getUserById = async (user_id) => {
+    try {
+        const { 
+            rows: [user]
+         } 
+        = await client.query(`
+        SELECT *
+        FROM users
+        WHERE user_id = ${user_id};
+        `)
+        return user
+    } catch (error) {
+        throw error
+    }
+}
+
+
+module.exports = { createUser, getAllUsers, getUserById }

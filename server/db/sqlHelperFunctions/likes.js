@@ -1,15 +1,15 @@
 const client = require("../client")
 
-const createLike = async ({ like_id, user_id, post_id }) => {
+const createLike = async ({ user_id, post_id }) => {
     try {
         const {
             rows: [like],
         } = await client.query (
-            `INSERT INTO likes(like_id, user_id, post_id)
-             VALUES($1, $2, $3)
+            `INSERT INTO likes(user_id, post_id)
+             VALUES($1, $2)
              RETURNING *;
             `,
-            [like_id, user_id, post_id]
+            [user_id, post_id]
         )
         return like
     } catch (error) {

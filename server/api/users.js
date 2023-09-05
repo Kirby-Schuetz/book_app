@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 
 // import the user SQL helper function from 'db' folder
-const { createUser, getAllUsers } = require('../db/sqlHelperFunctions/users');
+const { createUser, getAllUsers, getUserById } = require('../db/sqlHelperFunctions/users');
 
 // GET request for all users
 router.get('/', async (req, res, next) => {
@@ -18,7 +18,7 @@ router.get('/', async (req, res, next) => {
 // GET request for single user by id
 router.get('/:user_id', async (req, res, next) => {
     try{
-        const user = await getUsersById(req.params.user_id);
+        const user = await getUserById(req.params.user_id);
         res.send(user);
     } catch (error) {
         next(error);
@@ -38,7 +38,7 @@ router.post('/', async (req, res, next) => {
 // PUT request to update user by id
 router.put('/:user_id', async (req, res, next) => {
     try{
-        const user = await updatePost(req.params.user_id, req.body);
+        const user = await updateUser(req.params.user_id, req.body);
         res.send(user);
     } catch (error) {
         next(error);
