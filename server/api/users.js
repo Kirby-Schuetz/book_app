@@ -35,7 +35,7 @@ router.post('/', async (req, res, next) => {
     }
 });
 
-// PUT request to update user by id
+// PUT request to update user from /api/users/"user_id"
 router.put('/:user_id', async (req, res, next) => {
     try{
         const user = await updateUser(req.params.user_id, req.body);
@@ -45,7 +45,7 @@ router.put('/:user_id', async (req, res, next) => {
     }
 });
 
-// DELETE request to delete use by id
+// DELETE request to delete user from /api/users/"use_id"
 router.delete('/:user_id', async (req, res, next) => {
     try{
         const user = await deleteUser(req.params.user_id);

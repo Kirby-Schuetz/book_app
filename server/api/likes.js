@@ -45,7 +45,7 @@ router.put('/:like_id', async (req, res, next) => {
     }
 });
 
-// DELETE request to delete like by id
+// DELETE request to delete like from /api/likes/"like_id"
 router.delete('/:like_id', async (req, res, next) => {
     try{
         const like = await unLike(req.params.like_id);
