@@ -17,22 +17,6 @@ const createLike = async ({ user_id, post_id }) => {
     }
 }
 
-const getLikeById = async (like_id) => {
-    try {
-        const { 
-            rows: [like]
-         } 
-        = await client.query(`
-        SELECT *
-        FROM likes
-        WHERE like_id = ${like_id};
-        `)
-        return like
-    } catch (error) {
-        throw error
-    }
-}
-
 const getAllLikes = async () => {
     try {
         const { rows }
@@ -61,4 +45,4 @@ const unLike = async (like_id) => {
     }
 }
 
-module.exports = { createLike, getLikeById, getAllLikes, unLike }
+module.exports = { createLike, getAllLikes, unLike }

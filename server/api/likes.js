@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 
 // import the user SQL helper function from 'db' folder
-const { createLike, getLikeById, getAllLikes, unLike } = require('../db/sqlHelperFunctions/likes');
+const { createLike, getAllLikes, unLike } = require('../db/sqlHelperFunctions/likes');
 
 // GET request for all likes
 router.get('/', async (req, res, next) => {
@@ -15,30 +15,11 @@ router.get('/', async (req, res, next) => {
     }
 });
 
-// GET request for single like by id
-router.get('/:like_id', async (req, res, next) => {
-    try{
-        const like = await getLikeById(req.params.like_id);
-        res.send(like);
-    } catch (error) {
-        next(error);
-    }
-});
 
 // POST request to add a new like
 router.post('/', async (req, res, next) => {
     try{
         const like = await createLike(req.body);
-        res.send(like);
-    } catch (error) {
-        next(error);
-    }
-});
-
-// PUT request to update like by id
-router.put('/:like_id', async (req, res, next) => {
-    try{
-        const like = await updateLike(req.params.like_id, req.body);
         res.send(like);
     } catch (error) {
         next(error);

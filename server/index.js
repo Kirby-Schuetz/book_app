@@ -3,20 +3,28 @@ const express = require('express');
 const app = express();
 const PORT = 3000;
 
-const cors = require('cors');
-app.use(cors());
-
 const client = require('./db/client');
 // connect to client
 client.connect();
 
+// init morgan
+const morgan = require('morgan');
+app.use(morgan('dev'));
 
-app.use(express.json());
+// init body-parser
+const bodyParser = require('body-parser');
+app.use(bodyParser.json());
+
+// init cors
+const cors = require('cors');
+app.use(cors());
 
 // base route that returns "hello world"
 app.get('/', (req, res) => {
     res.send('Hello World!');
 });
+
+app.use(express.json());
 
 // create router that adds the /api prefix to your routes
 app.use('/api', require('./api'));
