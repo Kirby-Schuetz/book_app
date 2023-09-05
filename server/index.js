@@ -3,6 +3,9 @@ const express = require('express');
 const app = express();
 const PORT = 3000;
 
+const cors = require('cors');
+app.use(cors());
+
 const client = require('./db/client');
 // connect to client
 client.connect();
