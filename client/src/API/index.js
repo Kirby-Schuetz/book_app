@@ -64,6 +64,18 @@ export async function fetchUserPosts(user_id) {
     }
   }
 
+//   GET all users
+export async function fetchUsers() {
+    try {
+      //${user_id} comes from the front end and the URL
+      const response = await fetch(`${BASE_URL}/users/`);
+      const result = await response.json();
+      return result;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
 // POST create a new user
 export async function createUser(username, first_name, last_name, password, email) {
     try {
