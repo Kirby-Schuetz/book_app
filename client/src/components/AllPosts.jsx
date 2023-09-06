@@ -31,6 +31,7 @@ useEffect(() => {
 
     return (
         <>
+        {/* ADD NAVBAR HERE */}
         <div>
         {AllPosts.map((post) => (
           <div key={post.post_id}>

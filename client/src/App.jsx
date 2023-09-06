@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import AllPosts from "./components/AllPosts";
 // import UserProfile from "./components/UserProfile";
 // import CreatePost from "./components/CreatePost";
-// import NavBar from "./components/NavBar";
+import NavBar from "./components/NavBar";
 import './App.css'
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
     <>
       <div className="App">
 
-        {/* <div id="navbar"><NavBar /></div> */}
+        <div id="navbar"><NavBar /></div>
         
         <h1>Welcome to Bored Bibliophile</h1>
     
