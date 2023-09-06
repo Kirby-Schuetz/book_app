@@ -1,7 +1,15 @@
+// DISPLAYS NAVBAR & CREATE POST FORM
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
+export default function CreatePost({ posts }) {
+    const navigate = useNavigate();
+    return (
+        <div>
 
-export default function createPost() {
-    
-    return 
-        
+        </div>
+    )
 }
+
+
+

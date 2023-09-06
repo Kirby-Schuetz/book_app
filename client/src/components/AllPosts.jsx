@@ -1,40 +1,31 @@
-
+// DISPLAYS NAV BAR & ALL OF THE POSTS
 import { useState, useEffect } from "react";
-import { fetchAllPosts } from "../API/";
-import CreatePostForm from "./CreatePostForm";
-
+import { fetchAllPosts } from "../API";
 
 export default function AllPosts() {
-    const [posts, setPosts] = useState([]);
-    const [error, setError] = useState(null);
-    let [searchParam, setSearchParam] = useState("");
+    // useState & useEffect
+const [AllPosts, setAllPosts] = useState([]);
 
-    useEffect(() => {
-        async function getAllPosts() {
-            const APIResponse = await fetchAllPosts();
-            if (APIResponse.success) {
-                setPosts(APIResponse.data.posts);
-            } else {
-                setError(APIResponse.error.message);
-            }
-        }
-        getAllPosts();
-    }, []);
 
-    const postsToDisplay = searchParam
-    ? posts.filter((post) => post.title.toLowerCase().includes(searchParam))
-    : posts;
+useEffect(() => {
+  async function fetchData() {
+    const posts = await fetchAllPosts();
+    setAllPosts(posts);
+    console.log(posts);
+    return posts;
+  }
+  fetchData();
+},[]);
 
     return (
-
-        <div className="all-posts">
-            <h2> Book Postings </h2>
-            <ol>
-                {postsToDisplay.map((post) => {
-                    return <Item key={post_id} post={post} />;
-                })}
-            </ol>
-        </div>
+        <>
+        <ul>
+        {AllPosts.map((post) => (
+          <li key={post.id}>post={post}</li>
+        ))}
+      </ul>
+      </>
     );
 }
 
+{/* PropsType to futher investigate the props validation warning */}
