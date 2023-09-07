@@ -17,7 +17,7 @@ useEffect(() => {
 
     // Fetch users and create the userIdToUsernameMap
     async function fetchUsername() {
-      const usersData = await fetchUsers(); // Replace with your database fetch function
+      const usersData = await fetchUsers(); 
       const map = usersData.reduce((acc, user) => {
         acc[user.user_id] = user.username;
         return acc;
@@ -31,7 +31,6 @@ useEffect(() => {
 
     return (
         <>
-        {/* ADD NAVBAR HERE */}
         <div>
         {AllPosts.map((post) => (
           <div key={post.post_id}>

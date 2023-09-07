@@ -1,6 +1,10 @@
 // fetch requests
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const BASE_URL = `http://localhost:3000/api`;
+
+
 
 // GET all posts
 export async function fetchAllPosts() {
@@ -15,25 +19,22 @@ export async function fetchAllPosts() {
 }
 
 // POST create a new post
-export async function createPost(book_image, book_title, book_author, book_summary) {
-    try {
-        const response = await fetch(`${BASE_URL}/posts`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                book_image,
-                book_title,
-                book_author,
-                book_summary
-            })
-        });
-        const result = await response.json();
-        return result;
-    } catch (error) {
-        console.error(error);
-    }
+export async function createPost(postData) {
+  console.log("API Client: ", postData);
+  try {
+    const response = await fetch(`${BASE_URL}/posts/`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(postData)
+    });
+    const result = await response.json();
+    console.log(result);
+    return result;
+} catch (error) {
+    console.log("Your book did not post. Try again!", error);
+}
 }
 
 
@@ -48,7 +49,7 @@ export async function deletePost(post_id) {
         const result = await response.json();
         return result;
     } catch (error) {
-        console.error(error);
+        console.log("Your post did not delete. Try again!", error);
     }
 }
 
@@ -79,7 +80,7 @@ export async function fetchUsers() {
 // POST create a new user
 export async function createUser(username, first_name, last_name, password, email) {
     try {
-        const response = await fetch(`${BASE_URL}/users`, {
+        const response = await fetch(`${BASE_URL}/users/register`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -95,7 +96,7 @@ export async function createUser(username, first_name, last_name, password, emai
         const result = await response.json();
         return result;
     } catch (error) {
-        console.error(error);
+        console.log("Your book did not post. Try again!", error);
     }
 }
 
@@ -111,5 +112,28 @@ export async function deleteUser(user_id) {
       return result;
     } catch (error) {
       console.error(error);
+    }
+  }
+
+//   LOGIN
+export async function logIn(username, password) {
+    try {
+      const response = await fetch(`${BASE_URL}/users/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          user: {
+            username: username,
+            password: password,
+          },
+        }),
+      });
+      const result = await response.json();
+      console.log(result);
+      return result;
+    } catch (error) {
+      console.log("You are not logged in. Try again!", error);
     }
   }

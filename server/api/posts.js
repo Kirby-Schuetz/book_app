@@ -28,6 +28,7 @@ router.get('/:post_id', async (req, res, next) => {
 // POST request to add a new post
 router.post('/', async (req, res, next) => {
     try{
+        console.log("Express route: ", req.body);
         const post = await createPost(req.body);
         res.send(post);
     } catch (error) {

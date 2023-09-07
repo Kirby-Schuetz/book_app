@@ -39,15 +39,15 @@ const createTables = async () => {
     CREATE TABLE posts (
         post_id SERIAL PRIMARY KEY,
         book_image varchar,
-        book_title varchar UNIQUE NOT NULL,
-        book_author varchar NOT NULL,
+        book_title varchar,
+        book_author varchar,
         book_summary varchar,
-        user_id INTEGER REFERENCES users(user_id)
+        user_id INT REFERENCES users(user_id) ON DELETE CASCADE
     );
     CREATE TABLE likes (
         like_id SERIAL PRIMARY KEY,
-        user_id INTEGER REFERENCES users(user_id),
-        post_id INTEGER REFERENCES posts(post_id)
+        user_id INT REFERENCES users(user_id) ON DELETE CASCADE,
+        post_id INT REFERENCES posts(post_id) ON DELETE CASCADE
     )
     `)
     console.log("tables are built")

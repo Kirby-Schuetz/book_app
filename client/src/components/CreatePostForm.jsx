@@ -1,64 +1,82 @@
-import React, { useState } from "react";
-import { CreatePost } from "../API";
+import { useState } from "react";
+import { TextField } from "@mui/material";
+import { createPost } from "../API";
 
-export default function CreatePostForm({ posts, setPosts }) {
-    const [book_image, setBook_Image] = useState("");
-    const [book_title, setBook_Title] = useState("");
-    const [book_author, setBook_Author] = useState("");
-    const [book_summary, setBook_Summary] = useState("");
+
+
+export default function CreatePostForm() {
+    const [posts, setPosts] = useState([]);
+    const [postImage, setpostImage] = useState("");
+    const [postTitle, setpostTitle] = useState("");
+    const [postAuthor, setpostAuthor] = useState("");
+    const [postSummary, setpostSummary] = useState("");
+    const [successMessage, setSuccessMessage] = useState(null);
     const [error, setError] = useState(null);
+
+    const postData = {
+        book_image: postImage,
+        book_title: postTitle,
+        book_author: postAuthor,
+        book_summary: postSummary,
+        user_id: 5
+    };
 
     async function handleSubmit(e) {
         e.preventDefault();
-        const APIData = await CreatePost(book_image, book_title, book_author, book_summary);
-        if (APIData.success) {
-            console.log("New Post: ", APIData.data.newPost);
+        console.log("Handler function: ", postData);
+        const APIData = await createPost(postData);
+        console.log(APIData);
+        // if (APIData.success) {
+        //     console.log("New Post: ", APIData.data.newPost);
 
-            // resetting AllPosts manually
-            const CreatePost = [...posts, APIData.data.newPost];
-            setPosts(CreatePost);
+        //     // resetting AllPosts manually
+        //     // const createPost = [...posts, APIData.data.newPost];
+        //     // setPosts(createPost);
 
-            setBook_Image("");
-            setBook_Title("");
-            setBook_Author("");
-            setBook_Summary("");
-        } else {
-            setError(APIData.error.message)
-        }
+        //     // setpostImage("");
+        //     // setpostTitle("");
+        //     // setpostAuthor("");
+        //     // setpostSummary("");
+        // } else {
+        //     setError(APIData.error.message)
+        // }
+    
     }
 
-    return (
+return (
+    <div>
+        {successMessage && <p>{successMessage}</p>}
+        <div className="form">
+            <h2>Post a Book</h2>
         <form onSubmit={handleSubmit}>
             {error && <p>{error}</p>}
-            <input
-            value={book_image}
-            type="text"
-            name="book_image"
-            placeholder="Book Cover"
-            onChange={(e) => setBook_Image(e.target.value)}
+            <TextField
+            id="NP-input-box"
+            value={postImage}
+            label="Image"
+            onChange={(e) => setpostImage(e.target.value)}
             />
-            <input
-            value={book_title}
-            type="text"
-            name="book_title"
-            placeholder="Book Title"
-            onChange={(e) => setBook_Title(e.target.value)}
+            <TextField
+            id="NP-input-box"
+            value={postTitle}
+            label="Title"
+            onChange={(e) => setpostTitle(e.target.value)}
             />
-            <input
-            value={book_author}
-            type="text"
-            name="book_author"
-            placeholder="Author"
-            onChange={(e) => setBook_Author(e.target.value)}
+            <TextField
+            id="NP-input-box"
+            value={postAuthor}
+            label="Author"
+            onChange={(e) => setpostAuthor(e.target.value)}
             />
-            <input
-            value={book_summary}
-            type="text"
-            name="book_summary"
-            placeholder="Summary"
-            onChange={(e) => setBook_Summary(e.target.value)}
+            <TextField
+            id="NP-input-box"
+            value={postSummary}
+            label="Summary"
+            onChange={(e) => setpostSummary(e.target.value)}
             />
-            <button>Post Book</button>
+            <button type="submit" id="np-button">Post Book</button>
         </form>
-    );
+    </div>
+    </div>
+);
 }

@@ -2,19 +2,21 @@
 import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar"
 // import UserProfile from ".UserProfile";
-// import CreatePost from ".CreatePost";
+import CreatePostForm from "./CreatePostForm";
 
 
 export default function NavBar() {
  
 return (
-        <div>
-            <Link to="/posts">Home</Link>
-            <SearchBar/>
-            {/* <Link to="/" element={<CreatePost />} />
-            <Link to="/users/${user_id}" element={<UserProfile />} />  */}
-            
-           
-             
+        <nav className="navbar">
+            <div>
+            <Link to="/AllPosts">Home</Link>
             </div>
-             )}
+            <SearchBar/>
+            <div></div>
+            <Link to="/CreatePostForm">Post</Link>
+            <div></div>
+            <Link to="/UserProfile">Profile</Link>
+        </nav>
+    );
+}

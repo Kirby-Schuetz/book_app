@@ -1,6 +1,14 @@
 const client = require('../client')
 
-const createPost = async ({ book_image, book_title, book_author, book_summary}) => {
+const createPost = async ({ book_image, book_title, book_author, book_summary, user_id }) => {
+    const inputParams = {
+        book_image: book_image,
+        book_title: book_title,
+        book_author: book_author,
+        book_summary: book_summary,
+        user_id: user_id
+    };
+    console.log("DB Handler: ", inputParams);
     try {
         const {
             rows: [post],
@@ -9,12 +17,12 @@ const createPost = async ({ book_image, book_title, book_author, book_summary}) 
             // INSERT INTO table(column1, column2, column3)
             // VALUES(var1, var2, var3)
             // RETURNING everything
-            ` INSERT INTO posts(book_image, book_title, book_author, book_summary)
-              VALUES($1, $2, $3, $4)
+            ` INSERT INTO posts(book_image, book_title, book_author, book_summary, user_id)
+              VALUES($1, $2, $3, $4, $5)
               RETURNING *;
             `,
             // dependency array to hook up the parameters to the variables
-            [ book_image, book_title, book_author, book_summary]
+            [ book_image, book_title, book_author, book_summary, user_id]
         )
         return post
     } catch (error) {
