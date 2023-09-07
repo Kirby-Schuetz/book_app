@@ -9,6 +9,11 @@ const authSlice = createSlice({
 			state.user = payload.username;
 			state.token = payload.token;
 		},
+		login: (state, action) => {
+			const payload = action.payload;
+			state.user = payload.user;
+			state.token = payload.token;
+		},
 		logout: (state, action) => {
 			state.user = null;
 			state.token = null;
@@ -17,7 +22,7 @@ const authSlice = createSlice({
 });
 
 // Exporting actions from the authSlice
-export const { register } = authSlice.actions;
+export const { register, login, logout } = authSlice.actions;
 
 // Export the reducer as the default export
 export default authSlice.reducer;

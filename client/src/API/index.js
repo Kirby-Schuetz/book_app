@@ -1,7 +1,4 @@
 // fetch requests
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-
 const BASE_URL = `http://localhost:3000/api`;
 
 
@@ -54,14 +51,32 @@ export async function deletePost(post_id) {
 }
 
 // GET all posts by user_id
-export async function fetchUserPosts(user_id) {
+export async function getUserProfile() {
+  const token = localStorage.getItem('jwt');
+
+  if(!token) {
+    console.log("Looks like you aren't logged in. Not a member? Sign up!")
+    return null;
+  }
     try {
       //${user_id} comes from the front end and the URL
-      const response = await fetch(`${BASE_URL}/users/${user_id}`);
-      const result = await response.json();
-      return result;
+      const response = await fetch(`${BASE_URL}/userProfile`, {
+        method: "GET",
+        headers: {
+          "Authorization": `Bearer ${token}`
+        }
+      });
+
+      if (response.ok) {
+        const userData = await response.json();
+        return userData;
+      } else {
+        console.log("Error fetching user profile: ", response.statusText);
+        return null;
+      }
     } catch (error) {
       console.error(error);
+      return null;
     }
   }
 
@@ -78,25 +93,25 @@ export async function fetchUsers() {
   }
 
 // POST create a new user
-export async function createUser(username, first_name, last_name, password, email) {
+export async function createUser(userData) {
+  console.log("API Client: ", userData);
     try {
-        const response = await fetch(`${BASE_URL}/users/register`, {
+        const response = await fetch(`${BASE_URL}/users/`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({
-                username,
-                first_name,
-                last_name,
-                password,
-                email
-            })
+            body: JSON.stringify(userData)
         });
         const result = await response.json();
+        if(response.ok) {
+          localStorage.setItem('jwt', result.token);
+        } else {
+          console.log("Your account was not created. Try again!")
+        }
         return result;
     } catch (error) {
-        console.log("Your book did not post. Try again!", error);
+        console.log("Your account was not created. Try again!", error);
     }
 }
 
@@ -118,15 +133,15 @@ export async function deleteUser(user_id) {
 //   LOGIN
 export async function logIn(username, password) {
     try {
-      const response = await fetch(`${BASE_URL}/users/login`, {
+      const response = await fetch(`${BASE_URL}/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
           user: {
-            username: username,
-            password: password,
+            username: `${username}`,
+            password: `${password}`,
           },
         }),
       });

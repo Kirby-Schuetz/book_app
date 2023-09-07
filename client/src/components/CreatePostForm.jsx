@@ -10,7 +10,6 @@ export default function CreatePostForm() {
     const [postTitle, setpostTitle] = useState("");
     const [postAuthor, setpostAuthor] = useState("");
     const [postSummary, setpostSummary] = useState("");
-    const [successMessage, setSuccessMessage] = useState(null);
     const [error, setError] = useState(null);
 
     const postData = {
@@ -26,26 +25,11 @@ export default function CreatePostForm() {
         console.log("Handler function: ", postData);
         const APIData = await createPost(postData);
         console.log(APIData);
-        // if (APIData.success) {
-        //     console.log("New Post: ", APIData.data.newPost);
-
-        //     // resetting AllPosts manually
-        //     // const createPost = [...posts, APIData.data.newPost];
-        //     // setPosts(createPost);
-
-        //     // setpostImage("");
-        //     // setpostTitle("");
-        //     // setpostAuthor("");
-        //     // setpostSummary("");
-        // } else {
-        //     setError(APIData.error.message)
-        // }
     
     }
 
 return (
     <div>
-        {successMessage && <p>{successMessage}</p>}
         <div className="form">
             <h2>Post a Book</h2>
         <form onSubmit={handleSubmit}>

@@ -1,65 +1,71 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { logIn } from "../API";
-import { TextField, Button } from "@mui/material";
+import { TextField } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { selectIsAuthenticated, login } from "../redux";
 
 
-const LogInPage = () => {
+export default function LogInPage() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+   
     const navigate = useNavigate();
 
-    async function handleLogin(e) {
+    // get current userData from redux store
+    const dispatch = useDispatch();
+    const isAuthenticated = useSelector(selectIsAuthenticated);
+
+    async function handleSubmit(e) {
         e.preventDefault();
         const result = await logIn(username, password);
-        console.log(username);
-        console.log(password);
 
+
+         // dispatch login action to store user data and token in Redux
+         dispatch(
+            login({
+                user: username,
+                token: result.data.token,
+            })
+        );
+
+        // if login returns a token with successful login
+        if (result && result.data.token) {
+           
         alert("You are now logged into Bored Bibliophile. Your next reading adventure awaits you.");
-        console.log(JSON.stringify(result));
-        
-        navigate.push("/AllPosts");
+    
+        navigate("/AllPosts");
+    } else {
+        console.error("Login failed");
+    }
+    }
+
+    // check if the user is authenticated and redirect if necessary
+    if (isAuthenticated) {
+        return null;
     }
     
     return (
         <div>
             <div className="form">
             <h2>Bibliophile Login:</h2>
-            <form>
+            <form onSubmit={(e) => handleSubmit(e)}>
              <TextField
+                id="NP-input-box"
                 label="Username"
-                placeholder="Enter username"
-                fullWidth
-                required
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
             />
              <TextField
+                id="NP-input-box"
                 label="Password"
-                placeholder="Enter password"
-                type="password"
-                fullWidth
-                required
-                autoComplete="off"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
             />
-            <Button
-                type="submit"
-                color="primary"
-                variant="contained"
-                fullWidth
-                onClick={async () => {
-                await handleLogin(e);
-                }}
-            >
-                Sign in
-            </Button>
-            
+            <button>Sign in</button>
             </form>
             </div>
+            <Link to="/CreateUserForm">Not a Bibliophile? Register here.</Link>
         </div>
-    );
-        
-};
-export default LogInPage;
+    ); 
+}
