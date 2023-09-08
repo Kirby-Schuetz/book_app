@@ -44,7 +44,7 @@ export default function SearchBar() {
 
     return (
     <div>
-        <label>
+        <label className="search">
         Search:{" "}
         <input
           type="text"

@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { TextField } from "@mui/material";
 import { createPost } from "../API";
+import { Card, CardHeader, CardMedia, CardContent } from "@mui/material";
+
 
 
 
@@ -31,34 +33,51 @@ return (
     <div>
         <div className="form">
             <h2>Post a Book</h2>
+            <Card sx={{ maxWidth: 645 }}>
         <form onSubmit={handleSubmit}>
             {error && <p>{error}</p>}
             <TextField
             id="NP-input-box"
             value={postImage}
             label="Image"
+            fullWidth
+            margin="normal"
+            multiline
             onChange={(e) => setpostImage(e.target.value)}
             />
+            <CardContent>
             <TextField
             id="NP-input-box"
             value={postTitle}
             label="Title"
+            multiline
+            margin="normal"
+            fullWidth
             onChange={(e) => setpostTitle(e.target.value)}
             />
             <TextField
             id="NP-input-box"
             value={postAuthor}
             label="Author"
+            multiline
+            margin="normal"
+            fullWidth
             onChange={(e) => setpostAuthor(e.target.value)}
             />
             <TextField
             id="NP-input-box"
             value={postSummary}
             label="Summary"
+            multiline
+            margin="normal"
+            fullWidth
             onChange={(e) => setpostSummary(e.target.value)}
             />
+            </CardContent>
             <button type="submit" id="np-button">Post Book</button>
         </form>
+        </Card>
+
     </div>
     </div>
 );

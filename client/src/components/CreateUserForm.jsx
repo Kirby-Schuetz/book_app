@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { createUser } from "../API";
 import { TextField } from "@mui/material";
+import { Card, CardHeader, CardMedia, CardContent } from "@mui/material";
+
 
 
 
@@ -34,40 +36,59 @@ export default function CreateUserForm() {
     <div>
       <div className="form">
         <h2>Create a Bibliphile Account:</h2>
+        <Card sx={{ maxWidth: 645 }}>
         <form onSubmit={handleSubmit}>
           {error && <p>{error}</p>}
+          <CardContent>
           <TextField
             id="NP-input-box"
             value={username}
             label="Username"
+            multiline
+            margin="normal"
+            fullWidth
             onChange={(e) => setUsername(e.target.value)}
           />
           <TextField
             id="NP-input-box"
             value={password}
             label="Password"
+            multiline
+            margin="normal"
+            fullWidth
             onChange={(e) => setPassword(e.target.value)}
           />
           <TextField
             id="NP-input-box"
             value={first_name}
             label="FirstName"
+            multiline
+            margin="normal"
+            fullWidth
             onChange={(e) => setFirst_Name(e.target.value)}
           />
           <TextField
             id="NP-input-box"
             value={last_name}
             label="LastName"
+            multiline
+            margin="normal"
+            fullWidth
             onChange={(e) => setLast_Name(e.target.value)}
           />
           <TextField
             id="NP-input-box"
             value={email}
             label="Email"
+            multiline
+            margin="normal"
+            fullWidth
             onChange={(e) => setEmail(e.target.value)}
           />
+          </CardContent>
           <button>Submit</button>
         </form>
+        </Card>
       </div>
     </div>
   );

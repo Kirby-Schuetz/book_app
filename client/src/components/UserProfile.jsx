@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 // import { useSelector } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 import { useLogin } from "../context/loginContext";
+import { Card, CardHeader, CardMedia, CardContent, Button } from "@mui/material";
 
 
 export default function UserProfile() {
@@ -57,18 +58,24 @@ export default function UserProfile() {
         )
         :
         (
-            <div>
+            <div className="gallery">
                 <h2>{userName}</h2>
                 <h2>Posts:</h2>
                 <ul>
+                <Card sx={{ maxWidth: 645 }}>
                     {userPosts.map((post) => (
                         <>
                             <div key={post.user_id}>
+                                <CardMedia>
                             <img src={post.book_image} alt={post.book_title} />
+                            </CardMedia>
+                            <CardContent>
                             <h3>{post.book_title}</h3>
                             <h3>{post.book_author}</h3>
                             <h3>{post.book_summary}</h3>
+                            </CardContent>
                             </div>
+                           
                             <div>
                                 <button onClick={() => handleDelete(post.post_id)}>Delete Post</button>
                             </div>
@@ -88,6 +95,7 @@ export default function UserProfile() {
                             }
                         </>
                     ))}
+                     </Card>
                 </ul>
             </div>
         )

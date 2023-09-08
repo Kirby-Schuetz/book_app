@@ -3,6 +3,8 @@ import { TextField } from "@mui/material";
 import { editPost, getPostsByUserId } from "../API";
 import { useNavigate } from "react-router-dom";
 import { useLogin } from "../context/loginContext";
+import { Card, CardHeader, CardMedia, CardContent, Button } from "@mui/material";
+
 
 export default function EditUserPost() {
   const [isLoading, setIsLoading] = useState(true);
@@ -65,12 +67,13 @@ export default function EditUserPost() {
           <h2>{userName}</h2>
           <h2>Posts:</h2>
           <ul>
+          <Card sx={{ maxWidth: 645 }}>
             {userPosts.map((post) => (
               <div key={post.post_id}>
                 <img src={post.book_image} alt={post.book_title} />
                 <h3>{post.book_title}</h3>
-                <h3>{post.book_author}</h3>
-                <h3>{post.book_summary}</h3>
+                <p>{post.book_author}</p>
+                <p>{post.book_summary}</p>
                 <div>
                   <button onClick={() => handleEditFormOpen(post)}>
                     Editing Post
@@ -83,6 +86,9 @@ export default function EditUserPost() {
                       id="NP-input-box"
                       value={postToEdit.book_image}
                       label="Image"
+                      multiline
+                      margin="normal"
+                      fullWidth
                       onChange={(e) =>
                         setPostToEdit({
                           ...postToEdit,
@@ -94,6 +100,9 @@ export default function EditUserPost() {
                       id="NP-input-box"
                       value={postToEdit.book_title}
                       label="Title"
+                      multiline
+                      margin="normal"
+                      fullWidth
                       onChange={(e) =>
                         setPostToEdit({
                           ...postToEdit,
@@ -105,6 +114,9 @@ export default function EditUserPost() {
                       id="NP-input-box"
                       value={postToEdit.book_author}
                       label="Author"
+                      multiline
+                      margin="normal"
+                      fullWidth
                       onChange={(e) =>
                         setPostToEdit({
                           ...postToEdit,
@@ -116,6 +128,9 @@ export default function EditUserPost() {
                       id="NP-input-box"
                       value={postToEdit.book_summary}
                       label="Summary"
+                      multiline
+                      margin="normal"
+                      fullWidth
                       onChange={(e) =>
                         setPostToEdit({
                           ...postToEdit,
@@ -131,6 +146,7 @@ export default function EditUserPost() {
                 ) : null}
               </div>
             ))}
+            </Card>
           </ul>
         </div>
       )}
