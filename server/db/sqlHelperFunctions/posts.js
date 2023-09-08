@@ -50,9 +50,6 @@ const getPostByUserId = async (user_id) => {
 
     try {
         const result = await client.query(query, values);
-        // let record = result.rows[0];
-        // record.book_image = _bytesToString(record.book_image);
-        // return record;
         return result;
     } catch (error) {
         throw error
@@ -108,7 +105,6 @@ const deletePost = async (post_id) => {
         FROM posts
         WHERE post_id = ${post_id};
         `);
-         return post;
         } catch (error) {
          throw error;
     }

@@ -15,7 +15,7 @@ export default function LogInPage() {
 
         try {
             const result = await logIn(username, password);
-            console.log(result);
+            
             if (result.success) {
                 setIsLoggedIn(true);
                 setUserId(result.user.user_id);

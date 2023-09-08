@@ -65,7 +65,7 @@ router.put('/:post_id', async (req, res, next) => {
 router.delete('/:post_id', async (req, res, next) => {
     try{
         const post = await deletePost(req.params.post_id);
-        res.send(post);
+        return res.status(201).json({ success: true });
     } catch (error) {
         next(error);
     }

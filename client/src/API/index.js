@@ -43,8 +43,11 @@ export async function deletePost(post_id) {
         const response = await fetch(`${BASE_URL}/posts/${post_id}`, {
             method: "DELETE"
         });
-        const result = await response.json();
-        return result;
+        if (response.status === 201) {
+          const result = await response.json();
+          return result;
+        }
+        
     } catch (error) {
         console.log("Your post did not delete. Try again!", error);
     }
@@ -60,7 +63,6 @@ export async function getPostsByUserId(user_id) {
 
       if (response.status === 200) {
         const userPosts = await response.json();
-        console.log(userPosts);
         return userPosts;
       } else {
         console.log("Error fetching user profile: ", response.statusText);
