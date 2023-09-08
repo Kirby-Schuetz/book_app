@@ -30,9 +30,23 @@ const createPost = async ({ book_image, book_title, book_author, book_summary, u
     }
 }
 
-const getPostById = async (post_id) => {
+const getPostByPostId = async (post_id) => {
     const query = `SELECT * FROM posts WHERE post_id = $1`;
     const values = [post_id];
+
+    try {
+        const result = await client.query(query, values);
+        let record = result.rows[0];
+        record.book_image = _bytesToString(record.book_image);
+        return record;
+    } catch (error) {
+        throw error
+    }
+}
+
+const getPostByUserId = async (user_id) => {
+    const query = `SELECT * FROM posts WHERE user_id = $1`;
+    const values = [user_id];
 
     try {
         const result = await client.query(query, values);
@@ -106,4 +120,4 @@ const _bytesToString = (bytes) => {
     return string;
 }
 
-module.exports = { createPost, getPostById, getAllPosts, updatePost, deletePost }
+module.exports = { createPost, getPostByPostId, getPostByUserId, getAllPosts, updatePost, deletePost }

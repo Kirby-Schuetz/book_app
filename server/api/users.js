@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 
 // import the user SQL helper function from 'db' folder
-const { createUser, getAllUsers, getUserById, updateUser, deleteUser } = require('../db/sqlHelperFunctions/users');
+const { createUser, getAllUsers, getUserById, updateUser, deleteUser, loginUser } = require('../db/sqlHelperFunctions/users');
 
 // GET request for all users
 router.get('/', async (req, res, next) => {
@@ -16,14 +16,38 @@ router.get('/', async (req, res, next) => {
 });
 
 // GET request for single user by id
-router.get('/:user_id', async (req, res, next) => {
+router.get('/:username', async (req, res, next) => {
     try{
-        const user = await getUserById(req.params.user_id);
+        const user = await getUserById(req.params.username);
         res.send(user);
     } catch (error) {
         next(error);
     }
 });
+
+//GET user login
+router.get('/login', async (req, res) => {
+    try {
+      const { username, password } = req.query;
+  
+      if (!username || !password) {
+        return res.status(400).json({ error: 'Username and password are required.' });
+      }
+  
+      const user = await loginUser(username, password);
+  
+      if (user) {
+        // Successful login
+        return res.status(200).json({ success: true, user });
+      } else {
+        // Failed login
+        return res.status(401).json({ error: 'Invalid username or password.' });
+      }
+    } catch (error) {
+      console.error('Error during login:', error);
+      return res.status(500).json({ error: 'An error occurred during login.' });
+    }
+  });
 
 // POST request to add a new user
 router.post('/', async (req, res, next) => {

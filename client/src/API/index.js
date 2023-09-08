@@ -51,25 +51,16 @@ export async function deletePost(post_id) {
 }
 
 // GET all posts by user_id
-export async function getUserProfile() {
-  const token = localStorage.getItem('jwt');
-
-  if(!token) {
-    console.log("Looks like you aren't logged in. Not a member? Sign up!")
-    return null;
-  }
+export async function getPostsByUserId(user_id) {
     try {
       //${user_id} comes from the front end and the URL
-      const response = await fetch(`${BASE_URL}/userProfile`, {
+      const response = await fetch(`${BASE_URL}/posts/${user_id}`, {
         method: "GET",
-        headers: {
-          "Authorization": `Bearer ${token}`
-        }
       });
 
-      if (response.ok) {
-        const userData = await response.json();
-        return userData;
+      if (response.success) {
+        const userPosts = await response.json();
+        return userPosts;
       } else {
         console.log("Error fetching user profile: ", response.statusText);
         return null;
@@ -132,16 +123,17 @@ export async function deleteUser(user_id) {
 
 //   LOGIN
 export async function logIn(username, password) {
-    try {
-      const response = await fetch(`${BASE_URL}/`, {
+  console.log("here");  
+  try {
+      const response = await fetch(`${BASE_URL}/users/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
           user: {
-            username: `${username}`,
-            password: `${password}`,
+            username: username,
+            password: password,
           },
         }),
       });

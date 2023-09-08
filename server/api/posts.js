@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 
 // import the user SQL helper function from 'db' folder
-const { createPost, getAllPosts, getPostById, updatePost, deletePost } = require('../db/sqlHelperFunctions/posts');
+const { createPost, getAllPosts, getPostByPostId, getPostByUserId, updatePost, deletePost } = require('../db/sqlHelperFunctions/posts');
 
 // GET request for all posts
 router.get('/', async (req, res, next) => {
@@ -15,10 +15,20 @@ router.get('/', async (req, res, next) => {
     }
 });
 
-// GET request for single post by id
+// GET request for single post by post_id
 router.get('/:post_id', async (req, res, next) => {
     try{
-        const post = await getPostById(req.params.post_id);
+        const post = await getPostByPostId(req.params.post_id);
+        res.send(post);
+    } catch (error) {
+        next(error);
+    }
+});
+
+// GET request for posts by user_id
+router.get('/:user_id', async (req, res, next) => {
+    try{
+        const post = await getPostByUserId(req.params.user_id);
         res.send(post);
     } catch (error) {
         next(error);

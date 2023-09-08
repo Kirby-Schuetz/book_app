@@ -1,7 +1,8 @@
 // DISPLAYS NAV BAR & ALL OF THE POSTS
 import { useState, useEffect } from "react";
 import { fetchAllPosts } from "../API";
-import { fetchUsers} from "../API"
+import { fetchUsers} from "../API";
+import { Card, CardHeader, CardMedia, CardContent } from "@mui/material";
 
 export default function AllPosts() {
     // useState & useEffect
@@ -31,15 +32,21 @@ useEffect(() => {
 
     return (
         <>
-        <div>
+        <div >
+          <h2>Library</h2>
         {AllPosts.map((post) => (
-          <div key={post.post_id}>
-            <p>{userIdToUsernameMap[post.user_id]}</p>
+          <div key={post.post_id} className="gallery">
+            <Card sx={{ maxWidth: 645 }}>
+            <h3>{userIdToUsernameMap[post.user_id]}</h3>
+            <CardMedia>
             <img src={post.book_image} alt={post.book_title} />
-            <p>Title: {post.book_title}</p>
-            <p>Author: {post.book_author}</p>
-            <p>Summary: {post.book_summary}</p>
-
+            </CardMedia>
+            <CardContent>
+            <h2>{post.book_title}</h2>
+            <p>by, {post.book_author}</p>
+            <p>{post.book_summary}</p>
+            </CardContent>
+            </Card>
           </div>
         ))}
       </div>

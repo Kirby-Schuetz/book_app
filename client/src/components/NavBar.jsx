@@ -9,13 +9,10 @@ export default function NavBar() {
  
 return (
         <nav className="navbar">
-            <div>
-            <Link to="/AllPosts">Home</Link>
-            </div>
+            <Link to="/LoginPage">Home</Link>
             <SearchBar/>
-            <div></div>
+            <Link to="/AllPosts">Library</Link>
             <Link to="/CreatePostForm">Post</Link>
-            <div></div>
             <Link to="/UserProfile">Profile</Link>
         </nav>
     );

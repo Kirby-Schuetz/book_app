@@ -30,23 +30,23 @@ app.use(express.json());
 app.use('/api', require('./api'));
 
 // WEBTOKEN CODE
-const secretKey = 'kirby';
+// const secretKey = 'kirby';
 
-app.post('/users', (req, res) => {
-    const userData = req.body;
+// app.post('/users', (req, res) => {
+//     const userData = req.body;
 
-    // create JWT payload with userData
-    const payload = {
-        user_id: userData.id,
-        username: userData.username,
+//     // create JWT payload with userData
+//     const payload = {
+//         user_id: userData.id,
+//         username: userData.username,
 
-    };
-    // Sign the payload and create JWT
-    const token = jwt.sign(payload, secretKey, { expiresIn: '24h'});
+//     };
+//     // Sign the payload and create JWT
+//     const token = jwt.sign(payload, secretKey, { expiresIn: '24h'});
 
-    // return token to client
-    res.json({ token });
-})
+//     // return token to client
+//     res.json({ token });
+// })
 
 
 // listen to the port your server is running on

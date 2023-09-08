@@ -25,7 +25,6 @@ export default function CreatePostForm() {
         console.log("Handler function: ", postData);
         const APIData = await createPost(postData);
         console.log(APIData);
-    
     }
 
 return (

@@ -2,9 +2,10 @@
 
 import * as React from 'react';
 import { useState, useEffect } from "react";
-import { Link, useNavigate, useLocation, Route, Routes } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { fetchAllPosts } from "../API";
 import { fetchUsers} from "../API";
+import { Card, CardMedia, CardContent } from "@mui/material";
 
 
 export default function SearchBar() {
@@ -55,14 +56,15 @@ export default function SearchBar() {
         {searchParam && (
         <div>
           {searchResults.map((result) => (
-            <div key={result.id}>
-              {result.book_title && (
-                <Link to={`/posts/${result.id}`}>{result.book_title}</Link>
-              )}
-              {result.book_author && (
-                <Link to={`/posts/${result.id}`}>{result.book_author}</Link>
-              )}
-            </div>
+            
+            <Card to={`/posts/${result.post_id}`} key={result.post_id}>
+                <div>
+              <h3>{result.book_title}</h3>
+              <img src={result.book_image} alt={result.book_title} />
+               <h3>{result.book_author}</h3>
+               <p>{result.book_summary}</p>
+               </div>
+            </Card>
           ))}
         </div>
       )}

@@ -50,6 +50,8 @@ const getUserById = async (user_id) => {
         throw error
     }
 }
+
+
 const updateUser = async (user_id, updatedUserData) => {
     try {
         const { rows: [user], }
@@ -92,5 +94,38 @@ const deleteUser = async (user_id) => {
     }
 }
 
+const loginUser = async (username, password) => {
+    try {
+      const {
+        rows: [user],
+      } = await client.query(
+        `
+        SELECT *
+        FROM users
+        WHERE username = $1;
+        `,
+        [username]
+      );
+  
+      if (!user) {
+        // User not found
+        return null;
+      }
+  
+      // Compare the provided password with the hashed password in the database
+      const passwordMatch = await bcrypt.compare(password, user.password);
+  
+      if (passwordMatch) {
+        // Passwords match, user is logged in
+        return user;
+      } else {
+        // Incorrect password
+        return null;
+      }
+    } catch (error) {
+      throw error;
+    }
+  };
 
-module.exports = { createUser, getAllUsers, getUserById, updateUser, deleteUser }
+
+module.exports = { createUser, getAllUsers, getUserById, updateUser, deleteUser, loginUser }
