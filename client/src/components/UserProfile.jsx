@@ -2,35 +2,43 @@ import { getPostsByUserId } from "../API";
 import { useState, useEffect } from "react";
 // import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useLogin } from "../context/loginContext";
 
 // import EditPost from "./EditPost";
 // import DeletePost from "./DeletePost";
 
 export default function UserProfile() {
-    const [userData, setUserData] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
     const [userPosts, setUserPosts] = useState([]);
+    const { userId, userName } = useLogin();
     const navigate = useNavigate();
     // const reader = useSelector((state) => state.user_id);
 
+
     useEffect(() => {
-        async function getUserProfile() {
-                const response = await getPostsByUserId();
-                if (response.success) {
-                    setUserData(response.data.username);
-                    setUserPosts(response.data.user_id);
-                    } else {
-                        console.error(response.error);
-                        navigate("/LoginPage");
-                }
+        async function fetchUserPosts() {
+            try {
+                const response = await getPostsByUserId(userId);
+                setUserPosts(response.posts);
+                setIsLoading(false);
+            } catch(e) {
+                console.log(e);
+            }
         }
-        getUserProfile();
+        console.log("executing custom hook");
+        fetchUserPosts()
     }, []);
 
     return (
         <div>
-        {userData ? (
+        {isLoading ? 
+        (
+            <p>Loading user data...{userId}</p>
+        )
+        :
+        (
             <div>
-                <h2>{userData.username}</h2>
+                <h2>{userName}</h2>
                 <h2>Posts:</h2>
                 <ul>
                     {userPosts.map((post) => (
@@ -43,9 +51,8 @@ export default function UserProfile() {
                     ))}
                 </ul>
             </div>
-        ) : (
-            <p>Loading user data...</p>
-        )}
+        )
+    }
    </div>
 );
 }

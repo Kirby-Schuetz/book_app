@@ -26,11 +26,16 @@ router.get('/:post_id', async (req, res, next) => {
 });
 
 // GET request for posts by user_id
-router.get('/:user_id', async (req, res, next) => {
+router.get('/users/:user_id', async (req, res, next) => {
+    const userId = req.params.user_id;
+
     try{
-        const post = await getPostByUserId(req.params.user_id);
-        res.send(post);
+        const result = await getPostByUserId(userId);
+        const posts = result.rows;
+        // const posts = await result.json();
+        return res.status(200).json({ posts });
     } catch (error) {
+        console.log(error);
         next(error);
     }
 });

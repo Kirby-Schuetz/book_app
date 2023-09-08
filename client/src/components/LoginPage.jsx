@@ -2,25 +2,30 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { logIn } from "../API";
 import { TextField } from "@mui/material";
+import { useLogin } from "../context/loginContext";
 
 export default function LogInPage() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-   
+    const { setIsLoggedIn, setUserId, setUserName } = useLogin();
     const navigate = useNavigate();
-
-    // get current userData from redux store
-    // const dispatch = useDispatch();
 
     async function handleLogin(e) {
         e.preventDefault();
-        const result = await logIn(username, password);
-        console.log(username);
-        console.log(password);
 
-        alert("You are now logged into Bored Bibliophile. Your next reading adventure awaits you.");
-        console.log(JSON.stringify(result));
-        navigate("/AllPosts");
+        try {
+            const result = await logIn(username, password);
+            console.log(result);
+            if (result.success) {
+                setIsLoggedIn(true);
+                setUserId(result.user.user_id);
+                setUserName(result.user.username);
+                navigate("/UserProfile");
+            }
+        } catch(e) {
+            console.log(e);
+        }
+        
     }
     
     return (

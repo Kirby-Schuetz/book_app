@@ -57,11 +57,11 @@ export default function SearchBar() {
         <div>
           {searchResults.map((result) => (
             
-            <Card to={`/posts/${result.post_id}`} key={result.post_id}>
+            <Card sx={{ maxWidth: 345 }} to={`/posts/${result.post_id}`} key={result.post_id}>
                 <div>
-              <h3>{result.book_title}</h3>
+              <h2>{result.book_title}</h2>
               <img src={result.book_image} alt={result.book_title} />
-               <h3>{result.book_author}</h3>
+               <h2>{result.book_author}</h2>
                <p>{result.book_summary}</p>
                </div>
             </Card>

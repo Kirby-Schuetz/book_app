@@ -112,8 +112,10 @@ const loginUser = async (username, password) => {
         return null;
       }
   
-      // Compare the provided password with the hashed password in the database
-      const passwordMatch = await bcrypt.compare(password, user.password);
+      // Compare the provided password with the hashed password in the database (TBD - password currently not hashed)
+    //   const passwordMatch = await bcrypt.compare(password, user.password);
+
+      const passwordMatch = password === user.password;
   
       if (passwordMatch) {
         // Passwords match, user is logged in

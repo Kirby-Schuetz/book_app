@@ -54,12 +54,13 @@ export async function deletePost(post_id) {
 export async function getPostsByUserId(user_id) {
     try {
       //${user_id} comes from the front end and the URL
-      const response = await fetch(`${BASE_URL}/posts/${user_id}`, {
+      const response = await fetch(`${BASE_URL}/posts/users/${user_id}`, {
         method: "GET",
       });
 
-      if (response.success) {
+      if (response.status === 200) {
         const userPosts = await response.json();
+        console.log(userPosts);
         return userPosts;
       } else {
         console.log("Error fetching user profile: ", response.statusText);

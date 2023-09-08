@@ -26,14 +26,13 @@ router.get('/:username', async (req, res, next) => {
 });
 
 //GET user login
-router.get('/login', async (req, res) => {
+router.post('/login', async (req, res) => {
     try {
-      const { username, password } = req.query;
+      const { username, password } = req.body.user;
   
       if (!username || !password) {
         return res.status(400).json({ error: 'Username and password are required.' });
       }
-  
       const user = await loginUser(username, password);
   
       if (user) {
