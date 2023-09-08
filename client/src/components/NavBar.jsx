@@ -2,7 +2,6 @@
 import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar"
 // import UserProfile from ".UserProfile";
-import CreatePostForm from "./CreatePostForm";
 
 
 export default function NavBar() {

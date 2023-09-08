@@ -5,6 +5,7 @@ import CreatePostForm from "./components/CreatePostForm";
 import NavBar from "./components/NavBar";
 import LoginPage from "./components/LoginPage";
 import CreateUserForm from "./components/CreateUserForm";
+import EditPostForm from "./components/EditPostForm";
 import { LoginContextProvider } from "./context/loginContext";
 // import Authentication from "./components/Authentication";
 import './App.css';
@@ -24,6 +25,8 @@ function App() {
             <Route path="/CreatePostForm" element={<CreatePostForm />} />
             <Route path="/UserProfile" element={<UserProfile />} />
             <Route path="/CreateUserForm" element={<CreateUserForm />}/>
+            <Route path="/EditPostForm" element={<EditPostForm />}/>
+
             {/* <Route path="/Authentication" element={<Authentication />}/> */}
           </Routes>
         </LoginContextProvider>

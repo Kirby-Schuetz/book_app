@@ -34,8 +34,37 @@ export async function createPost(postData) {
 }
 }
 
+// GET post by post_id
+export async function getPostByPostId(post_id) {
+  try {
+    //${id} comes from the front end and the URL
+    const response = await fetch(`${BASE_URL}/posts/${post_id}`);
+    if (response.status === 204) {
+      const result = await response.json();
+      return result;}
+    }catch (error) {
+    console.error(error);
+  }
+}
 
 // PUT edit a post
+export const editPost = async (postEdits, post_id) => {
+  try {
+    const response = await fetch(`${BASE_URL}/posts/${post_id}`, {
+      method: "PUT",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(postEdits)
+    });
+    if (response.status === 202) {
+      const result = await response.json();
+      return result;
+    }
+  } catch (error) {
+    console.log("Your post did not update. Try again!", error);
+  }
+}
 
 // DELETE a post
 export async function deletePost(post_id) {

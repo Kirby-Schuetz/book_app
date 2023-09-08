@@ -55,7 +55,7 @@ router.post('/', async (req, res, next) => {
 router.put('/:post_id', async (req, res, next) => {
     try{
         const post = await updatePost(req.params.post_id, req.body);
-        res.send(post);
+        return res.status(202).json({ post });
     } catch (error) {
         next(error);
     }
