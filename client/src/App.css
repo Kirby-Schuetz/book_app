@@ -1,3 +1,5 @@
+@import url('https://fonts.cdnfonts.com/css/operation-napalm');
+
 div#root {
   max-width: 1280px;
   margin: 0 auto;
@@ -5,6 +7,7 @@ div#root {
   text-align: center;
   display: center;
 }
+
 .MuiTextField-root input {
   /* 14.5px = 18.5px - 4px (note: 18.5px is the input's default padding top and bottom) */
   padding-top: 14.5px;
@@ -25,22 +28,40 @@ img {
 
 .navbar {
   display: flex; /* Make the navbar horizontal */
-  font-size: 1rem;
+  font-size: 1.5rem;
   margin: 1rem;
   padding: 1rem;
   justify-content: space-between;
+  font-family: 'Operation Napalm', sans-serif;;
+}
+
+.searchbar {
+  input{
+    padding-left: 35px;
+    height: 118px;
+    font-size: 40px;
+  }
+  
 }
 
 .card {
   padding: 1em;
+  background-color: #E3D9CD;
+  display: center;
 }
 
 .div {
   display: center;
+  justify-content: space-between;
 }
 
-.gallery {
+.gallery, .userposts {
   padding: 3em;
   display: center;
+  
+}
+
+.pageheader{
+  color: #E4E7B2;
 }
 

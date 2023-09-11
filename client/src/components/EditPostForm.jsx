@@ -61,19 +61,22 @@ export default function EditUserPost() {
   return (
     <div>
       {isLoading ? (
-        <p>Loading user data...{userId}</p>
+        <h1 className="pageheader">Loading user data...{userName}</h1>
       ) : (
         <div>
-          <h2>{userName}</h2>
-          <h2>Posts:</h2>
+          <h1 className="pageheader">{userName} Posts:</h1>
           <ul>
           <Card sx={{ maxWidth: 645 }}>
             {userPosts.map((post) => (
               <div key={post.post_id}>
+                <CardMedia>
                 <img src={post.book_image} alt={post.book_title} />
+                </CardMedia>
+                <CardContent>
                 <h3>{post.book_title}</h3>
                 <p>{post.book_author}</p>
                 <p>{post.book_summary}</p>
+                </CardContent>
                 <div>
                   <button onClick={() => handleEditFormOpen(post)}>
                     Editing Post
@@ -142,7 +145,9 @@ export default function EditUserPost() {
                       Submit Changes
                     </button>
                     <button onClick={handleEditFormClose}>Cancel</button>
+                    
                   </div>
+                  
                 ) : null}
               </div>
             ))}

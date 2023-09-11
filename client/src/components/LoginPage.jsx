@@ -31,7 +31,7 @@ export default function LogInPage() {
     return (
         <div>
             <div className="form">
-            <h2>Bibliophile Login:</h2>
+            <h1 className="pageheader">Bibliophile Login:</h1>
             <form>
              <TextField
                 id="NP-input-box"

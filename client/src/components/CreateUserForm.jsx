@@ -35,7 +35,7 @@ export default function CreateUserForm() {
   return (
     <div>
       <div className="form">
-        <h2>Create a Bibliphile Account:</h2>
+        <h1 className="pageheader">Create a Bibliphile Account:</h1>
         <Card sx={{ maxWidth: 645 }}>
         <form onSubmit={handleSubmit}>
           {error && <p>{error}</p>}

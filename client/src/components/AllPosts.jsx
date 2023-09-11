@@ -33,7 +33,7 @@ useEffect(() => {
     return (
         <>
         <div >
-          <h2>Library</h2>
+          <h1 className="pageheader">Library</h1>
         {AllPosts.map((post) => (
           <div key={post.post_id} className="gallery">
             <Card sx={{ maxWidth: 645 }}>

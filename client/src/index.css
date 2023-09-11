@@ -1,6 +1,10 @@
 @import url('https://fonts.cdnfonts.com/css/nosifer');
 @import url('https://fonts.cdnfonts.com/css/president-nixon');
 @import url('https://fonts.cdnfonts.com/css/securecheck');
+@import url('https://fonts.cdnfonts.com/css/sweet-scream');
+@import url('https://fonts.cdnfonts.com/css/charmeleon');
+@import url('https://fonts.cdnfonts.com/css/ram-sans-expanded');
+@import url('https://fonts.cdnfonts.com/css/operation-napalm');
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -8,7 +12,7 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
+  color: #fcf9f3;
   background-color: #242424;
 
   font-synthesis: none;
@@ -16,19 +20,41 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+ 
 }
 
 body {
   margin: 0;
-  display: flex;
+  display: center;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
 }
 
+a {
+  font-family: 'Operation Napalm', sans-serif;
+                                                
+}
+
+a:link, a:hover, a:active {
+  color: #FAECE3;
+}
+
+a:visited {
+  color: #FAECE3;
+}
+
 h1 {
-  font-size: 3.2em;
+  font-size: 5em;
   line-height: 1.1;
+  font-family: 'Sweet Scream', sans-serif;
+}
+
+h2 {
+  font-family: 'Sweet Scream', sans-serif;
+  font-size: 3.5em;
+  color: #E4E7B2;
+  
 }
 
 h3 {
@@ -38,20 +64,29 @@ h3 {
   font-size: 2em;
 }
 
+p{
+  font-family: 'Ram Sans Expanded', sans-serif;
+
+  font-size: 1.5em;
+}
+
 
 button {
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
-  font-size: 1em;
+  font-size: 1.2em;
   font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+  font-family: 'Operation Napalm', sans-serif;
+  background-color: #000000;
   cursor: pointer;
   transition: border-color 0.25s;
+  color: #FAECE3;
+  outline-color: #FAECE3;
+
 }
 button:hover {
-  border-color: #646cff;
+  border-color: #E4E7B2;
 }
 button:focus,
 button:focus-visible {

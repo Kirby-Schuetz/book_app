@@ -32,7 +32,7 @@ export default function CreatePostForm() {
 return (
     <div>
         <div className="form">
-            <h2>Post a Book</h2>
+            <h1 className="pageheader">Post a Book</h1>
             <Card sx={{ maxWidth: 645 }}>
         <form onSubmit={handleSubmit}>
             {error && <p>{error}</p>}
