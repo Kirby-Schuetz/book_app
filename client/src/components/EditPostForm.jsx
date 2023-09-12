@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import { TextField } from "@mui/material";
 import { editPost, getPostsByUserId } from "../API";
 import { useNavigate } from "react-router-dom";
+import { Card,  CardMedia, CardContent } from "@mui/material";
 import { useLogin } from "../context/loginContext";
-import { Card, CardHeader, CardMedia, CardContent, Button } from "@mui/material";
 
 
-export default function EditUserPost() {
+export default function EditUserPost(token) {
   const [isLoading, setIsLoading] = useState(true);
   const [userPosts, setUserPosts] = useState([]);
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -35,7 +35,7 @@ export default function EditUserPost() {
   }
   async function handleEditFormSubmit() {
     try {
-      const result = await editPost(postToEdit.post_id, postToEdit);
+      const result = await editPost(postToEdit.post_id, postToEdit, token);
       console.log("Update post", result);
       // You may want to update the userPosts array with the edited post
       // after a successful update.

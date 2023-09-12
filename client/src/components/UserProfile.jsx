@@ -12,7 +12,6 @@ export default function UserProfile() {
     const [isFormOpen, setIsFormOpen] = useState(false);
     const { userId, userName } = useLogin();
     const navigate = useNavigate();
-    // const reader = useSelector((state) => state.user_id);
     
     function handleEditFormClose() {
         setIsFormOpen(false);

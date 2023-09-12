@@ -1,7 +1,7 @@
 const { Client } = require('pg')
 
-const postgres = 'postgres'
+const bcrypt = 'bcrypt'
 
-const client = new Client(`http://localhost:5497/${postgres}`)
+const client = new Client(`http://localhost:5497/${bcrypt}`)
 
 module.exports = client

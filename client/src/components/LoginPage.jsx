@@ -4,7 +4,7 @@ import { logIn } from "../API";
 import { TextField } from "@mui/material";
 import { useLogin } from "../context/loginContext";
 
-export default function LogInPage() {
+export default function LogInPage(setToken) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const { setIsLoggedIn, setUserId, setUserName } = useLogin();
@@ -20,6 +20,7 @@ export default function LogInPage() {
                 setIsLoggedIn(true);
                 setUserId(result.user.user_id);
                 setUserName(result.user.username);
+                setToken(result.data.token);
                 navigate("/UserProfile");
             }
         } catch(e) {

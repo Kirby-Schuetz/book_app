@@ -6,7 +6,7 @@ import { Card, CardHeader, CardMedia, CardContent } from "@mui/material";
 
 
 
-export default function CreateUserForm() {
+export default function CreateUserForm({ setToken }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [first_name, setFirst_Name] = useState("");
@@ -27,7 +27,8 @@ export default function CreateUserForm() {
       // prevents browser from reloading page
       e.preventDefault();
       console.log("Handler function: ", userData);
-      const APIData = await createUser(userData);
+      const APIData = await createUser(userData)
+      setToken(APIData.data.token);
       console.log(APIData);
   
   }

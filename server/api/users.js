@@ -1,6 +1,10 @@
 // import express and invoke it to create a router
 const express = require('express');
 const router = express.Router();
+const bcrypt = require('brcypt');
+const jwt = require('jsonwebtoken');
+const { JWT_SECRET, COOKIE_SECRET } = require('../secrets');
+const SALT_ROUNDS = 10;
 
 // import the user SQL helper function from 'db' folder
 const { createUser, getAllUsers, getUserById, updateUser, deleteUser, loginUser } = require('../db/sqlHelperFunctions/users');
