@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { fetchAllPosts } from "../API";
 import { fetchUsers} from "../API";
-import { Card, CardHeader, CardMedia, CardContent } from "@mui/material";
+import { Card, CardMedia, CardContent } from "@mui/material";
 
 export default function AllPosts() {
     // useState & useEffect
