@@ -16,13 +16,14 @@ export async function fetchAllPosts() {
 }
 
 // POST create a new post
-export async function createPost(postData) {
+export async function createPost(postData, token) {
   console.log("API Client: ", postData);
   try {
     const response = await fetch(`${BASE_URL}/posts/`, {
         method: "POST",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify(postData)
     });
@@ -48,12 +49,13 @@ export async function getPostByPostId(post_id) {
 }
 
 // PUT edit a post
-export const editPost = async (postEdits, post_id) => {
+export const editPost = async (postEdits, post_id, token) => {
   try {
     const response = await fetch(`${BASE_URL}/posts/${post_id}`, {
       method: "PUT",
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
       },
       body: JSON.stringify(postEdits)
     });
@@ -67,10 +69,14 @@ export const editPost = async (postEdits, post_id) => {
 }
 
 // DELETE a post
-export async function deletePost(post_id) {
+export async function deletePost(post_id, token) {
     try {
         const response = await fetch(`${BASE_URL}/posts/${post_id}`, {
-            method: "DELETE"
+            method: "DELETE",
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+            }
         });
         if (response.status === 201) {
           const result = await response.json();
@@ -139,12 +145,47 @@ export async function createUser(userData) {
 }
 
 // PUT edit a user
+export const editUser = async (userEdits, user_id, token) => {
+  try {
+    const response = await fetch(`${BASE_URL}/posts/${user_id}`, {
+      method: "PUT",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify(userEdits)
+    });
+    if (response.status === 207) {
+      const result = await response.json();
+      return result;
+    }
+  } catch (error) {
+    console.log("Your user profile did not update. Try again!", error);
+  }
+}
+
+// GET user by user_id
+export async function getUserByUserId(user_id) {
+  try {
+    //${id} comes from the front end and the URL
+    const response = await fetch(`${BASE_URL}/user/${user_id}`);
+    if (response.status === 204) {
+      const result = await response.json();
+      return result;}
+    }catch (error) {
+    console.error(error);
+  }
+}
 
 // DELETE a user
-export async function deleteUser(user_id) {
+export async function deleteUser(user_id, token) {
     try {
       const response = await fetch(`${BASE_URL}/users/${user_id}`, {
-        method: "DELETE"
+        method: "DELETE",
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+      }
       });
       const result = await response.json();
       return result;

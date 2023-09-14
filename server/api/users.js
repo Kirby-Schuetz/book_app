@@ -1,6 +1,11 @@
 // import express and invoke it to create a router
 const express = require('express');
 const router = express.Router();
+// const bcrypt = require('bcrypt');
+// const jwt = require('jsonwebtoken');
+// const { JWT_SECRET, COOKIE_SECRET } = require('../secrets');
+// const SALT_ROUNDS = 10;
+// const { authRequired } = require("./utils");
 
 // import the user SQL helper function from 'db' folder
 const { createUser, getAllUsers, getUserById, updateUser, deleteUser, loginUser } = require('../db/sqlHelperFunctions/users');
@@ -25,7 +30,7 @@ router.get('/:username', async (req, res, next) => {
     }
 });
 
-//GET user login
+// GET user login
 router.post('/login', async (req, res) => {
     try {
       const { username, password } = req.body.user;
@@ -48,7 +53,7 @@ router.post('/login', async (req, res) => {
     }
   });
 
-// POST request to add a new user
+// POST request to create a new user
 router.post('/', async (req, res, next) => {
     try{
         const user = await createUser(req.body);

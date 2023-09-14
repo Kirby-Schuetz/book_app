@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { createUser } from "../API";
 import { TextField } from "@mui/material";
-import { Card, CardHeader, CardMedia, CardContent } from "@mui/material";
+import { Card, CardContent } from "@mui/material";
 
 
 
@@ -27,7 +27,7 @@ export default function CreateUserForm() {
       // prevents browser from reloading page
       e.preventDefault();
       console.log("Handler function: ", userData);
-      const APIData = await createUser(userData);
+      const APIData = await createUser(userData)
       console.log(APIData);
   
   }

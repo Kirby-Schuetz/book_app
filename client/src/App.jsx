@@ -6,11 +6,14 @@ import NavBar from "./components/NavBar";
 import LoginPage from "./components/LoginPage";
 import CreateUserForm from "./components/CreateUserForm";
 import EditPostForm from "./components/EditPostForm";
+import EditUserForm from "./components/EditUserForm";
 import { LoginContextProvider } from "./context/loginContext";
-// import Authentication from "./components/Authentication";
+import { useState } from 'react';
+
 import './App.css';
 
 function App() {
+  const [token, setToken] = useState(null);
  
   return (
     <>
@@ -26,8 +29,7 @@ function App() {
             <Route path="/UserProfile" element={<UserProfile />} />
             <Route path="/CreateUserForm" element={<CreateUserForm />}/>
             <Route path="/EditPostForm" element={<EditPostForm />}/>
-
-            {/* <Route path="/Authentication" element={<Authentication />}/> */}
+            <Route path="/EditUserForm" element={<EditUserForm />}/>
           </Routes>
         </LoginContextProvider>
         </div>

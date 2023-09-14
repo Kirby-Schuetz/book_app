@@ -10,10 +10,16 @@ client.connect();
 // init morgan
 const morgan = require('morgan');
 app.use(morgan('dev'));
+const { requiresAuth } = require('express-openid-connect');
 
 // init body-parser
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
+
+// init cookie-parser
+const cookieParser = require('cookie-parser');
+const { COOKIE_SECRET} = require("./secrets");
+app.use(cookieParser(COOKIE_SECRET));
 
 // init cors
 const cors = require('cors');
@@ -24,30 +30,16 @@ app.get('/', (req, res) => {
     res.send('Hello World!');
 });
 
+// authorization
+app.get('/test', authRequired, (req, res, next) => {
+    res.send('You are authorized')
+})
+
+// have to have to run, hun!
 app.use(express.json());
 
 // create router that adds the /api prefix to your routes
 app.use('/api', require('./api'));
-
-// WEBTOKEN CODE
-// const secretKey = 'kirby';
-
-// app.post('/users', (req, res) => {
-//     const userData = req.body;
-
-//     // create JWT payload with userData
-//     const payload = {
-//         user_id: userData.id,
-//         username: userData.username,
-
-//     };
-//     // Sign the payload and create JWT
-//     const token = jwt.sign(payload, secretKey, { expiresIn: '24h'});
-
-//     // return token to client
-//     res.json({ token });
-// })
-
 
 // listen to the port your server is running on
 app.listen(PORT, () => {

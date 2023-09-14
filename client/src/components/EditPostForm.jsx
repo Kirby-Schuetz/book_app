@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { TextField } from "@mui/material";
 import { editPost, getPostsByUserId } from "../API";
 import { useNavigate } from "react-router-dom";
+import { Card,  CardMedia, CardContent } from "@mui/material";
 import { useLogin } from "../context/loginContext";
-import { Card, CardHeader, CardMedia, CardContent, Button } from "@mui/material";
 
 
 export default function EditUserPost() {
@@ -33,6 +33,7 @@ export default function EditUserPost() {
     });
     setIsFormOpen(true);
   }
+
   async function handleEditFormSubmit() {
     try {
       const result = await editPost(postToEdit.post_id, postToEdit);
@@ -60,30 +61,12 @@ export default function EditUserPost() {
 
   return (
     <div>
-      {isLoading ? (
-        <h1 className="pageheader">Loading user data...{userName}</h1>
-      ) : (
-        <div>
-          <h1 className="pageheader">{userName} Posts:</h1>
-          <ul>
-          <Card sx={{ maxWidth: 645 }}>
             {userPosts.map((post) => (
               <div key={post.post_id}>
-                <CardMedia>
-                <img src={post.book_image} alt={post.book_title} />
-                </CardMedia>
-                <CardContent>
-                <h3>{post.book_title}</h3>
-                <p>{post.book_author}</p>
-                <p>{post.book_summary}</p>
-                </CardContent>
+                  <button onClick={() => handleEditFormOpen(post)}>Edit Post</button>
+                {isFormOpen && (
+                <>
                 <div>
-                  <button onClick={() => handleEditFormOpen(post)}>
-                    Editing Post
-                  </button>
-                </div>
-                {isFormOpen && postToEdit.post_id === post.post_id ? (
-                  <div>
                     <h1>Edit Post</h1>
                     <TextField
                       id="NP-input-box"
@@ -141,20 +124,12 @@ export default function EditUserPost() {
                         })
                       }
                     />
-                    <button onClick={handleEditFormSubmit}>
-                      Submit Changes
-                    </button>
-                    <button onClick={handleEditFormClose}>Cancel</button>
-                    
+                    <button onClick={handleEditFormSubmit}>Submit Changes</button>
+                    </div>
+                    </>
+                )}
                   </div>
-                  
-                ) : null}
-              </div>
+             
             ))}
-            </Card>
-          </ul>
-        </div>
-      )}
-    </div>
-  );
-}
+           </div>
+  )}

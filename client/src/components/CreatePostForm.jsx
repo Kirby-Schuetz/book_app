@@ -6,7 +6,7 @@ import { Card, CardHeader, CardMedia, CardContent } from "@mui/material";
 
 
 
-export default function CreatePostForm() {
+export default function CreatePostForm({ token }) {
     const [posts, setPosts] = useState([]);
     const [postImage, setpostImage] = useState("");
     const [postTitle, setpostTitle] = useState("");
@@ -19,7 +19,6 @@ export default function CreatePostForm() {
         book_title: postTitle,
         book_author: postAuthor,
         book_summary: postSummary,
-        user_id: 5
     };
 
     async function handleSubmit(e) {

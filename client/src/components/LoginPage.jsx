@@ -20,6 +20,7 @@ export default function LogInPage() {
                 setIsLoggedIn(true);
                 setUserId(result.user.user_id);
                 setUserName(result.user.username);
+                // setToken(result.users.token);
                 navigate("/UserProfile");
             }
         } catch(e) {
