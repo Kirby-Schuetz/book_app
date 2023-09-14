@@ -24,7 +24,7 @@ export default function CreatePostForm({ token }) {
     async function handleSubmit(e) {
         e.preventDefault();
         console.log("Handler function: ", postData);
-        const APIData = await createPost(postData, token);
+        const APIData = await createPost(postData);
         console.log(APIData);
     }
 

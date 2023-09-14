@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useLogin } from "../context/loginContext";
 import { Card, CardContent } from "@mui/material";
 
-export default function EditUserProfile(token) {
+export default function EditUserProfile() {
     const [userProfile, setUserProfile ] = useState([]);
     const [isFormOpen, setIsFormOpen] = useState(false);
     const [userToEdit, setUserToEdit] = useState({
@@ -36,7 +36,7 @@ export default function EditUserProfile(token) {
     }
     async function handleEditUserFormSubmit() {
         try {
-            const result = await editUser(userToEdit.user_id, userToEdit, token);
+            const result = await editUser(userToEdit.user_id, userToEdit);
             console.log("Update user", result);
         } catch (error) {
             console.log(error);

@@ -1,19 +1,19 @@
-const jwt = require('jsonwebtoken');
-const { JWT_SECRET } = require('../secrets');
+// const jwt = require('jsonwebtoken');
+// const { JWT_SECRET } = require('../secrets');
 
-const authRequired = (req, res, next) => {
-    const token = req.signedCookies.token
-    console.log('Cookie Token:', token)
-    try {
-        jwt.verify(token, JWT_SECRET)
-    } catch (error) {
-        res.status(406).send({
-            loggedIn: false,
-            message: 'You are not authorized.',
-        })
-        return
-    }
-    next()
-}
+// const authRequired = (req, res, next) => {
+//     const token = req.signedCookies.token;
+//     console.log('Cookie Token:', token);
+//     try {
+//         jwt.verify(token, JWT_SECRET);
+//     } catch (error) {
+//         res.status(406).send({
+//             loggedIn: false,
+//             message: 'You are not authorized.',
+//         });
+//         return;
+//     }
+//     next();
+// };
 
-module.exports = { authRequired }
+// module.exports = { authRequired };

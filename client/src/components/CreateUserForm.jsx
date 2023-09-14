@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { createUser } from "../API";
 import { TextField } from "@mui/material";
-import { Card, CardHeader, CardMedia, CardContent } from "@mui/material";
+import { Card, CardContent } from "@mui/material";
 
 
 
 
-export default function CreateUserForm({ setToken }) {
+export default function CreateUserForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [first_name, setFirst_Name] = useState("");
@@ -28,7 +28,6 @@ export default function CreateUserForm({ setToken }) {
       e.preventDefault();
       console.log("Handler function: ", userData);
       const APIData = await createUser(userData)
-      setToken(APIData.data.token);
       console.log(APIData);
   
   }

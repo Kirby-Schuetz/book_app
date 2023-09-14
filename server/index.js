@@ -2,9 +2,6 @@
 const express = require('express');
 const app = express();
 const PORT = 3000;
-const { COOKIE_SECRET } = require('./secrets');
-const { authRequired } = require('./api/auth');
-
 
 const client = require('./db/client');
 // connect to client
@@ -13,14 +10,16 @@ client.connect();
 // init morgan
 const morgan = require('morgan');
 app.use(morgan('dev'));
+const { requiresAuth } = require('express-openid-connect');
 
 // init body-parser
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
 // init cookie-parser
-const cookieParser = require('cookie-parser')
-app.use(cookieParser(COOKIE_SECRET))
+const cookieParser = require('cookie-parser');
+const { COOKIE_SECRET} = require("./secrets");
+app.use(cookieParser(COOKIE_SECRET));
 
 // init cors
 const cors = require('cors');

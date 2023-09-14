@@ -3,7 +3,8 @@ import { useState, useEffect } from "react";
 // import { useSelector } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 import { useLogin } from "../context/loginContext";
-import { Card, CardHeader, CardMedia, CardContent, Button } from "@mui/material";
+import { Card, CardMedia, CardContent} from "@mui/material";
+import EditPostForm from "./EditPostForm";
 
 
 export default function UserProfile() {
@@ -11,13 +12,26 @@ export default function UserProfile() {
     const [userPosts, setUserPosts] = useState([]);
     const [isFormOpen, setIsFormOpen] = useState(false);
     const { userId, userName } = useLogin();
+    const [postToEdit, setPostToEdit] = useState({
+        book_image: "",
+        book_title: "",
+        book_author: "",
+        book_summary: "",
+      });
     const navigate = useNavigate();
     
     function handleEditFormClose() {
         setIsFormOpen(false);
     }
 
-    function handleEditFormOpen() {
+    function handleEditFormOpen(post) {
+        setPostToEdit({
+            post_id: post.post_id,
+            book_image: post.book_image,
+            book_title: post.book_title,
+            book_author: post.book_author,
+            book_summary: post.book_summary,
+          });
         setIsFormOpen(true);
     }
     async function handleDelete(post_id) {
@@ -57,6 +71,7 @@ export default function UserProfile() {
         )
         :
         (
+
             <div className="gallery">
                 <h1 className="pageheader">{userName} Posts:</h1>
                 <ul>
@@ -79,10 +94,10 @@ export default function UserProfile() {
                             </div>
                             <></>
                             <div>
-                                <button onClick={handleEditFormOpen}>Edit Post</button>
+                            <button onClick={handleEditFormOpen}>More Options</button>
                             </div>
                             {isFormOpen ? 
-                                <><Link to="/EditPostForm">Continue to edit post</Link><>
+                                <><EditPostForm /><>
                                     <div>
                                         <button onClick={handleEditFormClose}>Cancel</button>
                                     </div>

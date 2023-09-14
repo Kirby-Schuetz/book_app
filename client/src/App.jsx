@@ -23,13 +23,13 @@ function App() {
         <h1>Welcome to Bored Bibliophile</h1>
         <LoginContextProvider>
           <Routes>
-            <Route path="/LoginPage" element={<LoginPage setToken={setToken}/>} />
-            <Route path="/AllPosts" element={<AllPosts token={token}/>} />
-            <Route path="/CreatePostForm" element={<CreatePostForm token={token}/>} />
-            <Route path="/UserProfile" element={<UserProfile token={token}/>} />
-            <Route path="/CreateUserForm" element={<CreateUserForm setToken={setToken}/>}/>
-            <Route path="/EditPostForm" element={<EditPostForm token={token}/>}/>
-            <Route path="/EditUserForm" element={<EditUserForm token={token}/>}/>
+            <Route path="/LoginPage" element={<LoginPage />} />
+            <Route path="/AllPosts" element={<AllPosts />} />
+            <Route path="/CreatePostForm" element={<CreatePostForm />} />
+            <Route path="/UserProfile" element={<UserProfile />} />
+            <Route path="/CreateUserForm" element={<CreateUserForm />}/>
+            <Route path="/EditPostForm" element={<EditPostForm />}/>
+            <Route path="/EditUserForm" element={<EditUserForm />}/>
           </Routes>
         </LoginContextProvider>
         </div>
