@@ -24,10 +24,9 @@ function App() {
           <Route path="/createPost" element={<CreatePostForm />} />
           <Route path="/user" element={<UserProfile />} />
           <Route path="/createUser" element={<CreateUserForm />}/>
-          <Route path="/EditPostForm" element={<EditPostForm />}/>
-          <Route path="/EditUserForm" element={<EditUserForm />}/>
+          <Route path="/editPost" element={<EditPostForm />}/>
+          <Route path="/editUser" element={<EditUserForm />}/>
         </Routes>
-        
       </LoginContextProvider>
       
     </>
