@@ -1,5 +1,5 @@
 import React from "react";
-import LoginPage from "./components/LoginPage";
+import TestingComponent from "./components/TestingComponent";
 
 import './App.css';
 
@@ -7,7 +7,7 @@ import './App.css';
 function App() {
  
   return (
-    <LoginPage />
+    <TestingComponent />
   );
 }
 
