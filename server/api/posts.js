@@ -6,7 +6,7 @@ const router = express.Router();
 const { createPost, getAllPosts, getPostByPostId, getPostByUserId, updatePost, deletePost } = require('../db/sqlHelperFunctions/posts');
 
 // GET request for all posts
-router.get('/AllPosts', async (req, res, next) => {
+router.get('/', async (req, res, next) => {
     try{
         const posts = await getAllPosts();
         res.send(posts);
