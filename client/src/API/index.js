@@ -1,5 +1,5 @@
 // fetch requests
-const BASE_URL = `process.env.API`;
+const BASE_URL = process.env.API;
 
 
 
