@@ -16,13 +16,13 @@ export default function LogInPage() {
         <>
             <FormControl>
                 <TextField
-                    id="NP-input-box"
+                    id="username-input-box"
                     label="Username"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                 />
                 <TextField
-                    id="NP-input-box"
+                    id="password-input-box"
                     label="Password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
