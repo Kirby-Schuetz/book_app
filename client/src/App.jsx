@@ -24,6 +24,7 @@ function App() {
  
   return (
     <>
+      <h1>What the hell?</h1>
       <LoginPage />
       {/* <div>
         <div className="main-section">
