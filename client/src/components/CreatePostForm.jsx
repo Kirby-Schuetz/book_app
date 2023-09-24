@@ -3,7 +3,7 @@ import { TextField } from "@mui/material";
 import { createPost } from "../API";
 import { Card, CardHeader, CardMedia, CardContent } from "@mui/material";
 import { useLogin } from "../context/loginContext";
-import { Redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 
 
@@ -35,7 +35,7 @@ export default function CreatePostForm({ token }) {
         const APIData = await createPost(postData);
         console.log(APIData);
         return (
-            <Redirect to="/" />
+            <Navigate to="/" replace={true}/>
         )
     }
 
@@ -84,7 +84,8 @@ return (
                 onChange={(e) => setpostSummary(e.target.value)}
             />
             </CardContent>
-            <button type="submit" id="np-button">{isLoggedIn ? "Post Book" : <Redirect to="/login" />}</button>
+            {isLoggedIn ? null : <Navigate to="/login" replace={true} />}
+            <button type="submit" id="np-button">Post Book</button>
         </form>
         </Card>
     </div>
