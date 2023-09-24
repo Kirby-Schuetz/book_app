@@ -1,5 +1,5 @@
 // fetch requests
-const BASE_URL = `http://localhost:3000/api`;
+const BASE_URL = `process.env.API`;
 
 
 
