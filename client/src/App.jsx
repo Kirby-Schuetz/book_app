@@ -18,7 +18,7 @@ function App() {
   return (
     <>
       <div>
-        <div id="navbar"><NavBar /></div>
+        <NavBar />
         <div className="main-section">
         {/* <h1>Welcome to Bored Bibliophile</h1> */}
         {/* <LoginContextProvider>
