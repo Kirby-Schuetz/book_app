@@ -21,7 +21,7 @@ function App() {
         <div id="navbar"><NavBar /></div>
         <div className="main-section">
         <h1>Welcome to Bored Bibliophile</h1>
-        <LoginContextProvider>
+        {/* <LoginContextProvider>
           <Routes>
             <Route path="/LoginPage" element={<LoginPage />} />
             <Route path="/AllPosts" element={<AllPosts />} />
@@ -31,7 +31,7 @@ function App() {
             <Route path="/EditPostForm" element={<EditPostForm />}/>
             <Route path="/EditUserForm" element={<EditUserForm />}/>
           </Routes>
-        </LoginContextProvider>
+        </LoginContextProvider> */}
         </div>
       </div>
     </>
