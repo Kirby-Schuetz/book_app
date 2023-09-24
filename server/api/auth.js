@@ -1,29 +1,29 @@
-const { auth, requiresAuth } = require('express-openid-connect');
+// const { auth, requiresAuth } = require('express-openid-connect');
 
-const config = {
-  authRequired: false,
-  auth0Logout: true,
-  secret: 'a long, randomly-generated string stored in env',
-  baseURL: 'http://localhost:3000',
-  clientID: 'Y7v89iyxaIgcWrnD0fjaQcYewQ38m1ef',
-  issuerBaseURL: 'https://dev-m76l43w2qb01yjeu.us.auth0.com'
-};
+// const config = {
+//   authRequired: false,
+//   auth0Logout: true,
+//   secret: 'a long, randomly-generated string stored in env',
+//   baseURL: 'http://localhost:3000',
+//   clientID: 'Y7v89iyxaIgcWrnD0fjaQcYewQ38m1ef',
+//   issuerBaseURL: 'https://dev-m76l43w2qb01yjeu.us.auth0.com'
+// };
 
 // auth router attaches /login, /logout, and /callback routes to the baseURL
-app.use(auth(config));
+// app.use(auth(config));
 
 // req.isAuthenticated is provided from the auth router
-app.get('/', (req, res) => {
-  res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
-});
+// app.get('/', (req, res) => {
+//   res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
+// });
 
-app.get('/UserProfile', requiresAuth(), (req, res) => {
-    res.send(JSON.stringify(req.oidc.user));
-  });
+// app.get('/UserProfile', requiresAuth(), (req, res) => {
+//     res.send(JSON.stringify(req.oidc.user));
+//   });
 
-  app.get('/CreatePostForm', requiresAuth(), (req, res) => {
-    res.send(JSON.stringify(req.oidc.user));
-  });
+//   app.get('/CreatePostForm', requiresAuth(), (req, res) => {
+//     res.send(JSON.stringify(req.oidc.user));
+//   });
 
 // AUTH USING TOKENS
 // const bcrypt = require('bcrypt');

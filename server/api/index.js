@@ -8,7 +8,6 @@ const router = express.Router();
 router.get('/health', (req, res, next) => {
     res.send('OK');
 });
-router.use("/auth", require("./auth"));
 
 // setting up route prefixes for each section of your app
 router.use('/users', require('./users'));
