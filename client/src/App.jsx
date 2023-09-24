@@ -22,7 +22,7 @@ function App() {
           <Route path="/" element={<AllPosts />} />
           <Route path="/login" element={<LogInPage />} /> 
           <Route path="/CreatePostForm" element={<CreatePostForm />} />
-          <Route path="/UserProfile" element={<UserProfile />} />
+          <Route path="/user" element={<UserProfile />} />
           <Route path="/CreateUserForm" element={<CreateUserForm />}/>
           <Route path="/EditPostForm" element={<EditPostForm />}/>
           <Route path="/EditUserForm" element={<EditUserForm />}/>
