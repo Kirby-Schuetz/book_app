@@ -31,7 +31,7 @@ app.get('/', (req, res) => {
 });
 
 // authorization
-app.get('/test', authRequired, (req, res, next) => {
+app.get('/test', requiresAuth(), (req, res, next) => {
     res.send('You are authorized')
 })
 
