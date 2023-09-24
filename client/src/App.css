@@ -35,12 +35,10 @@ img {
   font-family: 'Operation Napalm', sans-serif;;
 } */
 
-.searchbar {
-  input{
-    padding-left: 35px;
-    height: 118px;
-    font-size: 40px;
-  }
+.searchbar input {
+  padding-left: 35px;
+  height: 118px;
+  font-size: 40px;
   
 }
 
