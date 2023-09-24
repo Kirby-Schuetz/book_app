@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { TextField } from "@mui/material/TextField";
-import { FormControl } from '@mui/material/FormControl';
+import FormControl from '@mui/material/FormControl';
 
 function Login() {
     const [username, setUsername] = useState("");
