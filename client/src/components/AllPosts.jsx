@@ -9,7 +9,7 @@ import CardMedia from "@mui/material/CardMedia";
 export default function AllPosts() {
     // useState & useEffect
 const [posts, setPosts] = useState([]);
-// const [userIdToUsernameMap, setUserIdToUsernameMap] = useState({});
+const [userIdToUsernameMap, setUserIdToUsernameMap] = useState({});
 
 useEffect(() => {
     // Fetch all posts
@@ -20,17 +20,17 @@ useEffect(() => {
     }
 
     // Fetch users and create the userIdToUsernameMap
-    // async function fetchUsername() {
-    //   const usersData = await fetchUsers(); 
-    //   const map = usersData.reduce((acc, user) => {
-    //     acc[user.user_id] = user.username;
-    //     return acc;
-    //   }, {});
-    //   setUserIdToUsernameMap(map);
-    // }
+    async function fetchUsername() {
+      const usersData = await fetchUsers(); 
+      const map = usersData.reduce((acc, user) => {
+        acc[user.user_id] = user.username;
+        return acc;
+      }, {});
+      setUserIdToUsernameMap(map);
+    }
 
     fetchData();
-    // fetchUsername();
+    fetchUsername();
   }, []);
 
     return (
@@ -40,7 +40,7 @@ useEffect(() => {
           {posts.map((post) => (
             <div key={post.post_id} className="gallery">
               <Card sx={{ maxWidth: 645 }}>
-              {/* < h3>{userIdToUsernameMap[post.user_id]}</h3> */}
+              < h3>{userIdToUsernameMap[post.user_id]}</h3>
               <CardMedia>
                 <img src={post.book_image} alt={post.book_title} />
               </CardMedia>
