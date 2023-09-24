@@ -21,9 +21,9 @@ function App() {
         <Routes>
           <Route path="/" element={<AllPosts />} />
           <Route path="/login" element={<LogInPage />} /> 
-          <Route path="/CreatePostForm" element={<CreatePostForm />} />
+          <Route path="/createPost" element={<CreatePostForm />} />
           <Route path="/user" element={<UserProfile />} />
-          <Route path="/CreateUserForm" element={<CreateUserForm />}/>
+          <Route path="/createUser" element={<CreateUserForm />}/>
           <Route path="/EditPostForm" element={<EditPostForm />}/>
           <Route path="/EditUserForm" element={<EditUserForm />}/>
         </Routes>

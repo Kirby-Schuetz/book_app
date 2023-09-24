@@ -1,6 +1,7 @@
 // DISPLAYS HOME BUTTON->ALLPOSTS, SEARCH BAR, CREATE POST BUTTON->CREATPOST, USER PROFILE->USERPROFILE
 import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar"
+import AccountCircle from '@mui/icons-material/AccountCircle';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -20,7 +21,7 @@ export default function NavBar() {
               <Link to="/">Home</Link>
             </Typography>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              <Link to="/CreatePostForm">Post</Link>
+              <Link to="/createPost">Post</Link>
             </Typography>
             <SearchBar />
             {
@@ -32,7 +33,9 @@ export default function NavBar() {
                 aria-haspopup="true"
                 color="inherit"
               >
-                <Link to="/user"></Link>
+                <AccountCircle>
+                  <Link to="/user"></Link>
+                </AccountCircle>
               </IconButton>
               :
               <Button color="inherit">
