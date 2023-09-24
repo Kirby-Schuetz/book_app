@@ -37,10 +37,10 @@ useEffect(() => {
         <>
         <div >
           <h1 className="pageheader">Library</h1>
-          {posts.map((post) => (
+          {/* {posts.map((post) => (
             <div key={post.post_id} className="gallery">
               <Card sx={{ maxWidth: 645 }}>
-              {/* < h3>{userIdToUsernameMap[post.user_id]}</h3> */}
+              < h3>{userIdToUsernameMap[post.user_id]}</h3>
               <CardMedia>
                 <img src={post.book_image} alt={post.book_title} />
               </CardMedia>
@@ -51,7 +51,8 @@ useEffect(() => {
               </CardContent>
               </Card>
             </div>
-          ))}
+          ))} */}
+          {JSON.stringify(posts)}
       </div>
       </>
     );
