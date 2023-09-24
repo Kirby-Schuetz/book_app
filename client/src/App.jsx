@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import AllPosts from "./components/AllPosts";
+// import AllPosts from "./components/AllPosts";
 // import UserProfile from "./components/UserProfile";
 // import CreatePostForm from "./components/CreatePostForm";
 // import NavBar from "./components/NavBar";
@@ -24,7 +24,7 @@ function App() {
         <LoginContextProvider>
           <Routes>
             {/* <Route path="/LoginPage" element={<LoginPage />} /> */}
-            <Route path="/" element={<AllPosts />} />
+            {/* <Route path="/" element={<AllPosts />} /> */}
             {/* <Route path="/CreatePostForm" element={<CreatePostForm />} />
             <Route path="/UserProfile" element={<UserProfile />} />
             <Route path="/CreateUserForm" element={<CreateUserForm />}/>
