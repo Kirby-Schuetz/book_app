@@ -31,6 +31,7 @@ export default function CreatePostForm({ token }) {
         e.preventDefault();
         if (!postData.user_id) {
             alert("You must be logged in to create a post.");
+            navigate("/login");
             return;
         }
         const APIData = await createPost(postData);
