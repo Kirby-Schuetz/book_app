@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 // import { useNavigate, Link } from "react-router-dom";
 import { logIn } from "../API";
-import { TextField } from "@mui/material";
+import { FormControl, TextField } from "@mui/material";
 import { useLogin } from "../context/loginContext";
 
 export default function LogInPage() {
@@ -31,24 +31,22 @@ export default function LogInPage() {
     
     return (
         <div>
-            <div className="form">
             <h1 className="pageheader">Bibliophile Login:</h1>
-            <form>
-             <TextField
-                id="NP-input-box"
-                label="Username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-            />
-             <TextField
-                id="NP-input-box"
-                label="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-            />
-            <button onClick={handleLogin}>Sign in</button>
-            </form>
-            </div>
+            <FormControl>
+                <TextField
+                    id="NP-input-box"
+                    label="Username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                />
+                <TextField
+                    id="NP-input-box"
+                    label="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                />
+                <button onClick={handleLogin}>Sign in</button>
+            </FormControl>
             {/* <Link to="/CreateUserForm">Not a Bibliophile? Register here.</Link> */}
         </div>
     ); 
