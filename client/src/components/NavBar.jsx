@@ -17,7 +17,7 @@ export default function NavBar() {
         <AppBar position="static" sx={{backgroundColor: '#242424'}}>
           <Toolbar>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              <Link to="/CreatePostForm">Post</Link>
+              <Link to="/">Home</Link>
             </Typography>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               <Link to="/CreatePostForm">Post</Link>
@@ -31,7 +31,9 @@ export default function NavBar() {
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
                 color="inherit"
-              ></IconButton>
+              >
+                <Link to="/user"></Link>
+              </IconButton>
               :
               <Button color="inherit">
                 <Link to="/login">Login</Link>
