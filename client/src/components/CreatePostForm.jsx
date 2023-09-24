@@ -3,7 +3,7 @@ import { TextField } from "@mui/material";
 import { createPost } from "../API";
 import { Card, CardHeader, CardMedia, CardContent } from "@mui/material";
 import { useLogin } from "../context/loginContext";
-import { useNavigate } from "react-router-dom";
+import Redirect from "react-router-dom";
 
 
 
@@ -14,10 +14,9 @@ export default function CreatePostForm({ token }) {
     const [postTitle, setpostTitle] = useState("");
     const [postAuthor, setpostAuthor] = useState("");
     const [postSummary, setpostSummary] = useState("");
-    const { userId } = useLogin();
+    const { isLoggedIn, userId } = useLogin();
     const [error, setError] = useState(null);
     
-    const navigate = useNavigate();
 
     const postData = {
         book_image: postImage,
@@ -31,12 +30,13 @@ export default function CreatePostForm({ token }) {
         e.preventDefault();
         if (!postData.user_id) {
             alert("You must be logged in to create a post.");
-            navigate("/login");
             return;
         }
         const APIData = await createPost(postData);
         console.log(APIData);
-        navigate("/");
+        return (
+            <Redirect to="/" />
+        )
     }
 
 return (
@@ -84,7 +84,7 @@ return (
                 onChange={(e) => setpostSummary(e.target.value)}
             />
             </CardContent>
-            <button type="submit" id="np-button">Post Book</button>
+            <button type="submit" id="np-button">{isLoggedIn ? "Post Book" : <Redirect to="/login" />}</button>
         </form>
         </Card>
     </div>
