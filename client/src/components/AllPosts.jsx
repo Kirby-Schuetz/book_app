@@ -1,7 +1,7 @@
 // DISPLAYS NAV BAR & ALL OF THE POSTS
 import { useState, useEffect } from "react";
 import { fetchAllPosts, fetchUsers } from "../API";
-import Card from "@mui/materia/Card";
+import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 
