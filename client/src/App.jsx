@@ -15,13 +15,13 @@ function App() {
       <LoginContextProvider>
         <NavBar />
         <Routes>
-          <Route path="/" element={<AllPosts />} />
+          {/* <Route path="/" element={<AllPosts />} /> */}
           <Route path="/login" element={<LogInPage />} /> 
           <Route path="/CreatePostForm" element={<CreatePostForm />} />
-          {/* <Route path="/UserProfile" element={<UserProfile />} />
-          <Route path="/CreateUserForm" element={<CreateUserForm />}/>
-          <Route path="/EditPostForm" element={<EditPostForm />}/>
-          <Route path="/EditUserForm" element={<EditUserForm />}/> */}
+          {/* <Route path="/UserProfile" element={<UserProfile />} /> */}
+          {/* <Route path="/CreateUserForm" element={<CreateUserForm />}/> */}
+          {/* <Route path="/EditPostForm" element={<EditPostForm />}/> */}
+          {/* <Route path="/EditUserForm" element={<EditUserForm />}/> */}
         </Routes>
         
       </LoginContextProvider>

@@ -1,51 +1,43 @@
 // DISPLAYS HOME BUTTON->ALLPOSTS, SEARCH BAR, CREATE POST BUTTON->CREATPOST, USER PROFILE->USERPROFILE
 import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar"
-// import UserProfile from ".UserProfile";
-
-
-// export default function NavBar() {
- 
-// return (
-//         <nav className="navbar">
-//             {/* <Link to="/LoginPage">Home</Link> */}
-//             {/* <SearchBar/> */}
-//             {/* <Link to="/">Library</Link> */}
-//             {/* <Link to="/CreatePostForm">Post</Link>
-//             <Link to="/UserProfile">Profile</Link> */}
-//         </nav>
-//     );
-// }
-
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
+import { useLogin } from "../context/loginContext";
 
 export default function NavBar() {
+  const {isLoggedIn } = useLogin();
   return (
     <Box sx={{ flexGrow: 1 }}>
       <nav className="navbar">
-        <AppBar position="static">
+        <AppBar position="static" sx={{backgroundColor: '#242424'}}>
           <Toolbar>
-            <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              sx={{ mr: 2 }}
-            >
-              <MenuIcon />
-            </IconButton>
-
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              <Link to="/CreatePostForm">Post</Link>
+            </Typography>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               <Link to="/CreatePostForm">Post</Link>
             </Typography>
             <SearchBar />
-            <Button color="inherit">Login</Button>
+            {
+              isLoggedIn ? 
+              <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                color="inherit"
+              ></IconButton>
+              :
+              <Button color="inherit">
+                <Link to="/login">Login</Link>
+              </Button>
+            }
+            
           </Toolbar>
         </AppBar>
       </nav>
