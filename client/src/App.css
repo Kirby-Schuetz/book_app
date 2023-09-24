@@ -26,14 +26,14 @@ img {
   width: 100%
 }
 
-.navbar {
+/* .navbar {
   display: flex; /* Make the navbar horizontal */
   font-size: 1.5rem;
   margin: 1rem;
   padding: 1rem;
   justify-content: space-between;
   font-family: 'Operation Napalm', sans-serif;;
-}
+} */
 
 .searchbar {
   input{
