@@ -3,7 +3,7 @@ import { TextField } from "@mui/material";
 import { createPost } from "../API";
 import { Card, CardHeader, CardMedia, CardContent } from "@mui/material";
 import { useLogin } from "../context/loginContext";
-import { Navigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 
 
 
@@ -16,6 +16,7 @@ export default function CreatePostForm({ token }) {
     const [postSummary, setpostSummary] = useState("");
     const { isLoggedIn, userId } = useLogin();
     const [error, setError] = useState(null);
+    const navigate = useNavigate();
     
 
     const postData = {
@@ -28,15 +29,9 @@ export default function CreatePostForm({ token }) {
 
     async function handleSubmit(e) {
         e.preventDefault();
-        if (!postData.user_id) {
-            alert("You must be logged in to create a post.");
-            return;
-        }
         const APIData = await createPost(postData);
         console.log(APIData);
-        return (
-            <Navigate to="/" replace={true}/>
-        )
+        navigate('/');
     }
 
 return (
