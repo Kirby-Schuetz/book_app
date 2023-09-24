@@ -14,23 +14,7 @@ export default function LogInPage() {
     
     return (
         <>
-            <FormControl>
-                <TextField
-                    id="username-input-box"
-                    label="Username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                />
-                <TextField
-                    id="password-input-box"
-                    label="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-                <div>
-                    <button onClick={handleLogin}>Sign in</button>
-                </div>
-            </FormControl>
+            
             {/* <Link to="/CreateUserForm">Not a Bibliophile? Register here.</Link> */}
         </>  
     ); 
