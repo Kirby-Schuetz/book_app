@@ -24,7 +24,7 @@ function App() {
         <LoginContextProvider>
           <Routes>
             {/* <Route path="/LoginPage" element={<LoginPage />} /> */}
-            <Route path="/AllPosts" element={<AllPosts />} />
+            <Route path="/" element={<AllPosts />} />
             {/* <Route path="/CreatePostForm" element={<CreatePostForm />} />
             <Route path="/UserProfile" element={<UserProfile />} />
             <Route path="/CreateUserForm" element={<CreateUserForm />}/>
