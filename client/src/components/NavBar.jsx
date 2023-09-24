@@ -8,11 +8,11 @@ export default function NavBar() {
  
 return (
         <nav className="navbar">
-            <Link to="/LoginPage">Home</Link>
+            {/* <Link to="/LoginPage">Home</Link> */}
             <SearchBar/>
-            <Link to="/AllPosts">Library</Link>
-            <Link to="/CreatePostForm">Post</Link>
-            <Link to="/UserProfile">Profile</Link>
+            <Link to="/">Library</Link>
+            {/* <Link to="/CreatePostForm">Post</Link>
+            <Link to="/UserProfile">Profile</Link> */}
         </nav>
     );
 }
