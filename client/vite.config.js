@@ -8,6 +8,12 @@ export default defineConfig({
   build: {
     commonjsOptions: {
       transformMixedEsModules: true,
-    }
+    },
+    rollupOptions: {
+      // Use the environment variable in your rollup options
+      input: {
+        main: import.meta.env.API,
+      },
+    },
   }
 })
