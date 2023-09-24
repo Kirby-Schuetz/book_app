@@ -14,12 +14,12 @@ export default function LogInPage() {
         e.preventDefault();
 
         try {
-            const result = await logIn(username, password);
+            // const result = await logIn(username, password);
             
             if (result.success) {
                 setIsLoggedIn(true);
-                setUserId(result.user.user_id);
-                setUserName(result.user.username);
+                // setUserId(result.user.user_id);
+                // setUserName(result.user.username);
                 // setToken(result.users.token);
                 // navigate("/UserProfile");
             }
