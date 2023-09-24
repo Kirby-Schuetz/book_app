@@ -7,17 +7,31 @@ import { useLogin } from "../context/loginContext";
 export default function LogInPage() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    // const { setIsLoggedIn, setUserId, setUserName } = useLogin();
+    const { setIsLoggedIn, setUserId, setUserName } = useLogin();
     // const navigate = useNavigate();
 
     async function handleLogin(e) {
         e.preventDefault();
-        console.log("handled button press")
+
+        try {
+            // const result = await logIn(username, password);
+            
+            if (result.success) {
+                setIsLoggedIn(true);
+                // setUserId(result.user.user_id);
+                // setUserName(result.user.username);
+                // setToken(result.users.token);
+                // navigate("/UserProfile");
+            }
+        } catch(e) {
+            console.log(e);
+        }
         
     }
     
     return (
-        <>
+        <div>
+            <h1 className="pageheader">Bibliophile Login:</h1>
             <FormControl>
                 <TextField
                     id="NP-input-box"
@@ -34,6 +48,6 @@ export default function LogInPage() {
                 <button onClick={handleLogin}>Sign in</button>
             </FormControl>
             {/* <Link to="/CreateUserForm">Not a Bibliophile? Register here.</Link> */}
-        </>  
+        </div>
     ); 
 }
