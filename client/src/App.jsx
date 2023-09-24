@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-// import AllPosts from "./components/AllPosts";
+import AllPosts from "./components/AllPosts";
 // import UserProfile from "./components/UserProfile";
 // import CreatePostForm from "./components/CreatePostForm";
 // import NavBar from "./components/NavBar";
