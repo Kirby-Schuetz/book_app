@@ -3,7 +3,7 @@ import { TextField } from "@mui/material";
 import { createPost } from "../API";
 import { Card, CardHeader, CardMedia, CardContent } from "@mui/material";
 import { useLogin } from "../context/loginContext";
-import Redirect from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 
 
