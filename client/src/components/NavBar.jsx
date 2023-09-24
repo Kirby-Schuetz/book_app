@@ -1,6 +1,6 @@
 // DISPLAYS HOME BUTTON->ALLPOSTS, SEARCH BAR, CREATE POST BUTTON->CREATPOST, USER PROFILE->USERPROFILE
-// import { Link } from "react-router-dom";
-// import SearchBar from "./SearchBar"
+import { Link } from "react-router-dom";
+import SearchBar from "./SearchBar"
 // import UserProfile from ".UserProfile";
 
 
@@ -39,10 +39,11 @@ export default function NavBar() {
           >
             <MenuIcon />
           </IconButton>
-          
+
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            News
+            <Link to="/CreatePostForm">Post</Link>
           </Typography>
+          <SearchBar />
           <Button color="inherit">Login</Button>
         </Toolbar>
       </AppBar>
