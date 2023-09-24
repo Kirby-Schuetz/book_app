@@ -24,42 +24,42 @@ function App() {
  
   return (
     <>
-      <div>
-        {/* <Box sx={{ flexGrow: 1 }}>
-          <AppBar position="static">
-            <Toolbar>
-              <IconButton
-                size="large"
-                edge="start"
-                color="inherit"
-                aria-label="menu"
-                sx={{ mr: 2 }}
-              >
-                <MenuIcon />
-              </IconButton>
-              <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                News
-              </Typography>
-              <Button color="inherit">Login</Button>
-            </Toolbar>
-          </AppBar>
-        </Box> */}
+      <LoginPage />
+      {/* <div>
         <div className="main-section">
-        <LoginPage />
-        {/* <h1>Welcome to Bored Bibliophile</h1> */}
-        {/* <LoginContextProvider>
-          <Routes>
-            <Route path="/" element={<LoginPage />} />
-            <Route path="/" element={<AllPosts />} />
-            <Route path="/CreatePostForm" element={<CreatePostForm />} />
-            <Route path="/UserProfile" element={<UserProfile />} />
-            <Route path="/CreateUserForm" element={<CreateUserForm />}/>
-            <Route path="/EditPostForm" element={<EditPostForm />}/>
-            <Route path="/EditUserForm" element={<EditUserForm />}/>
-          </Routes>
-        </LoginContextProvider> */}
+        <h1>Welcome to Bored Bibliophile</h1>
+          <Box sx={{ flexGrow: 1 }}>
+            <AppBar position="static">
+              <Toolbar>
+                <IconButton
+                  size="large"
+                  edge="start"
+                  color="inherit"
+                  aria-label="menu"
+                  sx={{ mr: 2 }}
+                >
+                  <MenuIcon />
+                </IconButton>
+                <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                  News
+                </Typography>
+                <Button color="inherit">Login</Button>
+              </Toolbar>
+            </AppBar>
+          </Box>
+          <LoginContextProvider>
+            <Routes>
+              <Route path="/" element={<LoginPage />} />
+              <Route path="/" element={<AllPosts />} />
+              <Route path="/CreatePostForm" element={<CreatePostForm />} />
+              <Route path="/UserProfile" element={<UserProfile />} />
+              <Route path="/CreateUserForm" element={<CreateUserForm />}/>
+              <Route path="/EditPostForm" element={<EditPostForm />}/>
+              <Route path="/EditUserForm" element={<EditUserForm />}/>
+            </Routes>
+          </LoginContextProvider>
         </div>
-      </div>
+      </div> */}
     </>
   );
 }
