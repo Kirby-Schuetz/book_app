@@ -12,6 +12,7 @@ const [userIdToUsernameMap, setUserIdToUsernameMap] = useState({});
 useEffect(() => {
     // Fetch all posts
     async function fetchData() {
+      console.log("Fetching data...useEffect hook");
       const posts = await fetchAllPosts();
       setAllPosts(posts);
     }

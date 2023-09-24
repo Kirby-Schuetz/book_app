@@ -5,7 +5,8 @@ const BASE_URL = `process.env.API`;
 
 // GET all posts
 export async function fetchAllPosts() {
-    try {
+  console.log("Fetching posts");  
+  try {
         const response = await fetch(`${BASE_URL}/posts`);
         const result = await response.json();
         return result;
