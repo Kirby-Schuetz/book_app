@@ -31,7 +31,9 @@ export default function LogInPage() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
-                <button onClick={handleLogin}>Sign in</button>
+                <div>
+                    <button onClick={handleLogin}>Sign in</button>
+                </div>
             </FormControl>
             {/* <Link to="/CreateUserForm">Not a Bibliophile? Register here.</Link> */}
         </>  

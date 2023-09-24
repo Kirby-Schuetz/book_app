@@ -9,12 +9,11 @@ function App() {
  
   return (
     <>
-      <TestingComponent />
+      {/* <TestingComponent /> */}
       <LoginContextProvider>
         <LogInPage />
       </LoginContextProvider>
     </>
-    
   );
 }
 
