@@ -20,7 +20,7 @@ function App() {
       <div>
         <div id="navbar"><NavBar /></div>
         <div className="main-section">
-        <h1>Welcome to Bored Bibliophile</h1>
+        {/* <h1>Welcome to Bored Bibliophile</h1> */}
         {/* <LoginContextProvider>
           <Routes>
             <Route path="/LoginPage" element={<LoginPage />} />
