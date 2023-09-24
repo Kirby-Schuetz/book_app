@@ -1,8 +1,8 @@
 // NOT SURE IF I NEED THIS. i did.
 
-import * as React from 'react';
+// import * as React from 'react';
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { fetchAllPosts } from "../API";
 import { fetchUsers} from "../API";
 import { Card, CardMedia, CardContent } from "@mui/material";
