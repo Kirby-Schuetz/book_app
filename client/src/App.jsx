@@ -1,3 +1,4 @@
+import React from "react";
 // import { Routes, Route } from "react-router-dom";
 // import AllPosts from "./components/AllPosts";
 // import UserProfile from "./components/UserProfile";
@@ -44,8 +45,8 @@ function App() {
           </AppBar>
         </Box> */}
         <div className="main-section">
-        {/* <h1>Welcome to Bored Bibliophile</h1> */}
         <LoginPage />
+        {/* <h1>Welcome to Bored Bibliophile</h1> */}
         {/* <LoginContextProvider>
           <Routes>
             <Route path="/" element={<LoginPage />} />
