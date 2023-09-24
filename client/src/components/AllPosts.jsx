@@ -6,7 +6,7 @@ import { Card, CardMedia, CardContent } from "@mui/material";
 
 export default function AllPosts() {
     // useState & useEffect
-const [AllPosts, setAllPosts] = useState([]);
+const [posts, setPosts] = useState([]);
 const [userIdToUsernameMap, setUserIdToUsernameMap] = useState({});
 
 useEffect(() => {
@@ -14,7 +14,7 @@ useEffect(() => {
     async function fetchData() {
       console.log("Fetching data...useEffect hook");
       const posts = await fetchAllPosts();
-      setAllPosts(posts);
+      setPosts(posts);
     }
 
     // Fetch users and create the userIdToUsernameMap
@@ -35,7 +35,7 @@ useEffect(() => {
         <>
         <div >
           <h1 className="pageheader">Library</h1>
-        {AllPosts.map((post) => (
+        {posts.map((post) => (
           <div key={post.post_id} className="gallery">
             <Card sx={{ maxWidth: 645 }}>
             <h3>{userIdToUsernameMap[post.user_id]}</h3>
