@@ -1,13 +1,19 @@
 import React from "react";
 import NavBar from "./components/NavBar";
-// import './App.css';
+import { LoginContextProvider } from "./context/loginContext";
+import './App.css';
+import LogInPage from "./components/LoginPage";
 
 
 function App() {
  
   return (
     <>
-      <NavBar />
+      <LoginContextProvider>
+        <NavBar />
+        <LogInPage />
+      </LoginContextProvider>
+      
     </>
   );
 }
