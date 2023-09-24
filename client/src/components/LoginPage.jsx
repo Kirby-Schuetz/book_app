@@ -1,14 +1,10 @@
 import React, { useState } from "react";
 // import { useNavigate, Link } from "react-router-dom";
-import { logIn } from "../API";
 import { FormControl, TextField } from "@mui/material";
-import { useLogin } from "../context/loginContext";
 
 export default function LogInPage() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    // const { setIsLoggedIn, setUserId, setUserName } = useLogin();
-    // const navigate = useNavigate();
 
     async function handleLogin(e) {
         e.preventDefault();
