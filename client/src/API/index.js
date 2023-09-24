@@ -7,12 +7,13 @@ const BASE_URL = `process.env.API`;
 export async function fetchAllPosts() {
   console.log("Fetching posts");  
   try {
-        const response = await fetch(`${BASE_URL}/posts`);
-        const result = await response.json();
-        return result;
+      console.log("URL: ", `${BASE_URL}/posts`);
+      const response = await fetch(`${BASE_URL}/posts`);
+      const result = await response.json();
+      return result;
     } catch (error) {
-        console.log("No posts today, create one!", error);
-        return error;
+      console.log("No posts today, create one!", error);
+      return error;
     }
 }
 
