@@ -26,7 +26,7 @@ function App() {
     <>
       <h1>What the hell?</h1>
       <h2>Seriously?</h2>
-      {/* <LoginPage /> */}
+      <LoginPage />
       {/* <div>
         <div className="main-section">
         <h1>Welcome to Bored Bibliophile</h1>
