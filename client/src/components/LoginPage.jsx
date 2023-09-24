@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate, Link, useHistory } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { logIn } from "../API";
 import { FormControl, TextField } from "@mui/material";
 import { useLogin } from "../context/loginContext";
@@ -9,7 +9,7 @@ export default function LogInPage() {
     const [password, setPassword] = useState("");
     const { setIsLoggedIn, setUserId, setUserName } = useLogin();
     const navigate = useNavigate();
-    const history = useHistory();
+
     async function handleLogin(e) {
         e.preventDefault();
 
@@ -22,11 +22,7 @@ export default function LogInPage() {
                 setUserName(result.user.username);
             }
 
-            if (history.length > 0) {
-                navigate(-1);
-            } else {
-                navigate('/');
-            }
+            navigate('/');
         } catch(e) {
             console.log(e);
         }
