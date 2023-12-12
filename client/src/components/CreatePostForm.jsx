@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { TextField } from "@mui/material";
 import { createPost } from "../API";
-import { Card, CardHeader, CardMedia, CardContent } from "@mui/material";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
 import { useLogin } from "../context/loginContext";
 import { useNavigate, Navigate } from "react-router-dom";
 

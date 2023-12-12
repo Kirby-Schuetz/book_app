@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { createUser } from "../API";
 import { TextField } from "@mui/material";
-import { Card, CardContent } from "@mui/material";
-
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
 
 
 

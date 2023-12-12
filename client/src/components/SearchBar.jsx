@@ -1,12 +1,10 @@
-// NOT SURE IF I NEED THIS. i did.
-
 // import * as React from 'react';
 import { useState, useEffect } from "react";
 // import { Link } from "react-router-dom";
 import { fetchAllPosts } from "../API";
 import { fetchUsers} from "../API";
 import { styled, alpha } from '@mui/material/styles';
-import { Card, CardMedia, CardContent } from "@mui/material";
+import Card from '@mui/material/Card';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 

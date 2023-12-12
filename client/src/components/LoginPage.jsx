@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, Form } from "react-router-dom";
 import { logIn } from "../API";
-import { FormControl, TextField } from "@mui/material";
+import { TextField } from "@mui/material";
 import { useLogin } from "../context/loginContext";
 
 export default function LogInPage() {
@@ -32,7 +32,7 @@ export default function LogInPage() {
     return (
         <div>
             <h1 className="pageheader">Bibliophile Login:</h1>
-            <FormControl>
+            <Form>
                 <TextField
                     id="NP-input-box"
                     label="Username"
@@ -47,7 +47,7 @@ export default function LogInPage() {
                 />
                 <button onClick={handleLogin}>Sign in</button>
                 <Link to="/createUser">Not a Bibliophile? Register here.</Link>
-            </FormControl>
+            </Form>
         </div>
     ); 
 }

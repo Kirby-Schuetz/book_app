@@ -3,7 +3,9 @@ import { TextField } from "@mui/material";
 import { editUser, getUserByUserId } from "../API";
 import { useNavigate } from "react-router-dom";
 import { useLogin } from "../context/loginContext";
-import { Card, CardContent } from "@mui/material";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+
 
 export default function EditUserProfile() {
     const [userProfile, setUserProfile ] = useState([]);

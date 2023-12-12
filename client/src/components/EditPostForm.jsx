@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import { TextField } from "@mui/material";
 import { editPost, getPostsByUserId } from "../API";
 import { useNavigate } from "react-router-dom";
-import { Card,  CardMedia, CardContent } from "@mui/material";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
 import { useLogin } from "../context/loginContext";
 
 
