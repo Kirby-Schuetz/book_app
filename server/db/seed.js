@@ -1,8 +1,8 @@
 // pull in connection to my local database
 const client = require('./client')
 
-const { createUser, getAllUsers } = require('./sqlHelperFunctions/users')
-const { createPost, getPostsById } = require('./sqlHelperFunctions/posts')
+const { createUser } = require('./sqlHelperFunctions/users')
+const { createPost } = require('./sqlHelperFunctions/posts')
 const { createLike } = require('./sqlHelperFunctions/likes')
 
 const { users, posts, likes } = require('./seedData')

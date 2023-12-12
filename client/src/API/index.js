@@ -44,7 +44,8 @@ export async function getPostByPostId(post_id) {
     const response = await fetch(`${BASE_URL}/posts/${post_id}`);
     if (response.status === 204) {
       const result = await response.json();
-      return result;}
+      return result;
+    }
     }catch (error) {
     console.error(error);
   }
