@@ -1,11 +1,14 @@
-import React, {createContext, useContext, useState } from 'react';
+import {createContext, useContext, useState } from 'react';
 
 const LoginContext = createContext();
+
+export const useLog = () => useContext(LoginContext);
 
 function LoginContextProvider({children}) {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [userId, setUserId] = useState(null);
-    const [userName, setUserName] = useState("");
+    const [userName, setUserName] = useState(null);
+    const [auth, setAuth] = useState({ token: localStorage.getItem("token")});
     
     const contextValue = {
         isLoggedIn,
@@ -13,7 +16,9 @@ function LoginContextProvider({children}) {
         userId,
         setUserId,
         userName,
-        setUserName
+        setUserName,
+        auth,
+        setAuth
     };
 
     return (
@@ -23,12 +28,4 @@ function LoginContextProvider({children}) {
     )
 }
 
-function useLogin() {
-    const context = useContext(LoginContext);
-    if (context === undefined) {
-        throw new Error('useLogin must be used within a LoginContextProvider');
-    }
-    return context;
-}
-
-export { LoginContextProvider, useLogin };
+export { LoginContextProvider };

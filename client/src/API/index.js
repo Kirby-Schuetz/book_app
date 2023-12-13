@@ -7,25 +7,29 @@ const BASE_URL = import.meta.env.VITE_API;
 export async function fetchAllPosts() {
   console.log("Fetching posts");  
   try {
-      console.log("URL: ", `${BASE_URL}/posts`);
-      const response = await fetch(`${BASE_URL}/posts`);
+      const response = await fetch(`${BASE_URL}/`);
       const result = await response.json();
+    
+      if (!response.ok) {
+        throw new Error(result.message || 'Failed to fetch posts');
+      }
+  
       return result;
     } catch (error) {
-      console.log("No posts today, create one!", error);
-      return error;
+      console.log("Error fetching posts:", error);
+      throw error; // Rethrow the error to let the calling code handle it
     }
-}
+  }
 
 // POST create a new post
-export async function createPost(postData, token) {
+export async function createPost(postData) {
   console.log("API Client: ", postData);
   try {
-    const response = await fetch(`${BASE_URL}/posts/`, {
+    const response = await fetch(`${BASE_URL}/`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            'Authorization': `Bearer ${token}`
+            // 'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify(postData)
     });
@@ -41,7 +45,7 @@ export async function createPost(postData, token) {
 export async function getPostByPostId(post_id) {
   try {
     //${id} comes from the front end and the URL
-    const response = await fetch(`${BASE_URL}/posts/${post_id}`);
+    const response = await fetch(`${BASE_URL}/${post_id}`);
     if (response.status === 204) {
       const result = await response.json();
       return result;
@@ -52,13 +56,13 @@ export async function getPostByPostId(post_id) {
 }
 
 // PUT edit a post
-export const editPost = async (postEdits, post_id, token) => {
+export const editPost = async (postEdits, post_id) => {
   try {
-    const response = await fetch(`${BASE_URL}/posts/${post_id}`, {
+    const response = await fetch(`${BASE_URL}/${post_id}/edit`, {
       method: "PUT",
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
+        // 'Authorization': `Bearer ${token}`
       },
       body: JSON.stringify(postEdits)
     });
@@ -72,13 +76,13 @@ export const editPost = async (postEdits, post_id, token) => {
 }
 
 // DELETE a post
-export async function deletePost(post_id, token) {
+export async function deletePost(post_id) {
     try {
-        const response = await fetch(`${BASE_URL}/posts/${post_id}`, {
+        const response = await fetch(`${BASE_URL}/${post_id}`, {
             method: "DELETE",
             headers: {
               'Content-Type': 'application/json',
-              'Authorization': `Bearer ${token}`
+              // 'Authorization': `Bearer ${token}`
             }
         });
         if (response.status === 201) {
@@ -95,7 +99,7 @@ export async function deletePost(post_id, token) {
 export async function getPostsByUserId(user_id) {
     try {
       //${user_id} comes from the front end and the URL
-      const response = await fetch(`${BASE_URL}/posts/users/${user_id}`, {
+      const response = await fetch(`${BASE_URL}/posts/${user_id}`, {
         method: "GET",
       });
 
@@ -116,11 +120,17 @@ export async function getPostsByUserId(user_id) {
 export async function fetchUsers() {
     try {
       //${user_id} comes from the front end and the URL
-      const response = await fetch(`${BASE_URL}/users/`);
+      const response = await fetch(`${BASE_URL}/`);
+ 
+      if (!response.ok) {
+        throw new Error(`Failed to fetch users. Status: ${response.status}`);
+      }
+  
       const result = await response.json();
       return result;
     } catch (error) {
-      console.error(error);
+      console.log("Error fetching users:", error);
+      throw error; // Rethrow the error to let the calling code handle it
     }
   }
 
@@ -128,7 +138,7 @@ export async function fetchUsers() {
 export async function createUser(userData) {
   console.log("API Client: ", userData);
     try {
-        const response = await fetch(`${BASE_URL}/users/`, {
+        const response = await fetch(`${BASE_URL}/`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -148,13 +158,13 @@ export async function createUser(userData) {
 }
 
 // PUT edit a user
-export const editUser = async (userEdits, user_id, token) => {
+export const editUser = async (userEdits, user_id) => {
   try {
-    const response = await fetch(`${BASE_URL}/posts/${user_id}`, {
+    const response = await fetch(`${BASE_URL}/${user_id}`, {
       method: "PUT",
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
+        // 'Authorization': `Bearer ${token}`
       },
       body: JSON.stringify(userEdits)
     });
@@ -171,7 +181,7 @@ export const editUser = async (userEdits, user_id, token) => {
 export async function getUserByUserId(user_id) {
   try {
     //${id} comes from the front end and the URL
-    const response = await fetch(`${BASE_URL}/user/${user_id}`);
+    const response = await fetch(`${BASE_URL}/${user_id}`);
     if (response.status === 204) {
       const result = await response.json();
       return result;}
@@ -181,13 +191,13 @@ export async function getUserByUserId(user_id) {
 }
 
 // DELETE a user
-export async function deleteUser(user_id, token) {
+export async function deleteUser(user_id) {
     try {
-      const response = await fetch(`${BASE_URL}/users/${user_id}`, {
+      const response = await fetch(`${BASE_URL}/${user_id}`, {
         method: "DELETE",
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
+          // 'Authorization': `Bearer ${token}`
       }
       });
       const result = await response.json();
@@ -201,7 +211,7 @@ export async function deleteUser(user_id, token) {
 export async function logIn(username, password) {
   console.log("here");  
   try {
-      const response = await fetch(`${BASE_URL}/users/login`, {
+      const response = await fetch(`${BASE_URL}/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -220,3 +230,18 @@ export async function logIn(username, password) {
       console.log("You are not logged in. Try again!", error);
     }
   }
+
+     // LOGOUT
+     export const logout = async () => {
+
+      const response = await fetch(`${BASE_URL}/logout`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+  
+      if (!response.ok) {
+        throw new Error('Logout failed');
+      }
+    };

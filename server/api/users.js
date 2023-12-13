@@ -1,17 +1,14 @@
-// import express and invoke it to create a router
 const express = require('express');
 const router = express.Router();
-// const bcrypt = require('bcrypt');
-// const jwt = require('jsonwebtoken');
-// const { JWT_SECRET, COOKIE_SECRET } = require('../secrets');
-// const SALT_ROUNDS = 10;
-// const { authRequired } = require("./utils");
+const authenticate = require('../api/auth');
+const jwt = require('jsonwebtoken');
+const { JWT_SECRET } = require('../secrets');
 
 // import the user SQL helper function from 'db' folder
 const { createUser, getAllUsers, getUserById, updateUser, deleteUser, loginUser } = require('../db/sqlHelperFunctions/users');
 
 // GET request for all users
-router.get('/', async (req, res, next) => {
+router.get('/users', async (req, res, next) => {
     try{
         const users = await getAllUsers();
         res.send(users);
@@ -21,7 +18,7 @@ router.get('/', async (req, res, next) => {
 });
 
 // GET request for single user by id
-router.get('/:username', async (req, res, next) => {
+router.get('/:user_id', async (req, res, next) => {
     try{
         const user = await getUserById(req.params.username);
         res.send(user);
@@ -31,7 +28,7 @@ router.get('/:username', async (req, res, next) => {
 });
 
 // GET user login
-router.post('/login', async (req, res) => {
+router.post('/login', authenticate, async (req, res) => {
     try {
       const { username, password } = req.body.user;
   
@@ -42,6 +39,8 @@ router.post('/login', async (req, res) => {
   
       if (user) {
         // Successful login
+        const token = jwt.sign({ userId: user.user_id }, JWT_SECRET, { expiresIn: '1h' });
+        res.cookie('token', token, { httpOnly: true, maxAge: 3600000 }); // 1 hour expiration
         return res.status(200).json({ success: true, user });
       } else {
         // Failed login
@@ -53,8 +52,19 @@ router.post('/login', async (req, res) => {
     }
   });
 
+  // GET user logout
+
+  router.post('/logout', (req, res) => {
+    res.clearCookie('token');
+    res.status(200).json({ success: true });
+  });
+  
+  router.get('/', (req, res) => {
+    console.log("here");
+  })  
+
 // POST request to create a new user
-router.post('/', async (req, res, next) => {
+router.post('/users', async (req, res, next) => {
     try{
         const user = await createUser(req.body);
         res.send(user);

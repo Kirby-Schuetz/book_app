@@ -26,7 +26,7 @@ router.get('/:post_id', async (req, res, next) => {
 });
 
 // GET request for posts by user_id
-router.get('/users/:user_id', async (req, res, next) => {
+router.get('/posts/:user_id', async (req, res, next) => {
     const userId = req.params.user_id;
 
     try{
@@ -41,7 +41,7 @@ router.get('/users/:user_id', async (req, res, next) => {
 });
 
 // POST request to add a new post
-router.post('/', async (req, res, next) => {
+router.post('/posts/:post_id', async (req, res, next) => {
     try{
         console.log("Express route: ", req.body);
         const post = await createPost(req.body);

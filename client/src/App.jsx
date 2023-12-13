@@ -1,4 +1,3 @@
-import React from "react";
 import { Routes, Route } from "react-router-dom";
 import AllPosts from "./components/AllPosts";
 import CreatePostForm from "./components/CreatePostForm";
@@ -21,11 +20,11 @@ function App() {
         <Routes>
           <Route path="/" element={<AllPosts />} />
           <Route path="/login" element={<LogInPage />} /> 
-          <Route path="/createPost" element={<CreatePostForm />} />
-          <Route path="/user" element={<UserProfile />} />
-          <Route path="/createUser" element={<CreateUserForm />}/>
-          <Route path="/editPost" element={<EditPostForm />}/>
-          <Route path="/editUser" element={<EditUserForm />}/>
+          <Route path="/postform" element={<CreatePostForm />} />
+          <Route path="/users/:user_id/profile" element={<UserProfile />} />
+          <Route path="/register" element={<CreateUserForm />}/>
+          <Route path="/posts/:post_id/edit" element={<EditPostForm />}/>
+          <Route path="/users/:user_id/edit" element={<EditUserForm />}/>
         </Routes>
       </LoginContextProvider>
       
