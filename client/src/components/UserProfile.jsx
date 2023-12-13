@@ -2,7 +2,7 @@ import { getPostsByUserId, deletePost } from "../API";
 import { useState, useEffect } from "react";
 // import { useSelector } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
-import { useLogin } from "../context/loginContext";
+import { useLog } from "../context/loginContext";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -10,10 +10,11 @@ import EditPostForm from "./EditPostForm";
 
 
 export default function UserProfile() {
+    const { isLoggedIn } = useLog()
     const [isLoading, setIsLoading] = useState(true);
     const [userPosts, setUserPosts] = useState([]);
     const [isFormOpen, setIsFormOpen] = useState(false);
-    const { userId, userName } = useLogin();
+    const { userId, userName } = useLog();
     const [postToEdit, setPostToEdit] = useState({
         book_image: "",
         book_title: "",
@@ -77,6 +78,7 @@ export default function UserProfile() {
             <div className="gallery">
                 <h1 className="pageheader">{userName} Posts:</h1>
                 <ul>
+                    {isLoading && (
                 <Card sx={{ maxWidth: 645 }}>
                     {userPosts.map((post) => (
                         <>
@@ -111,6 +113,7 @@ export default function UserProfile() {
                         </>
                     ))}
                      </Card>
+                     )}
                 </ul>
             </div>
         )

@@ -4,11 +4,11 @@ import { fetchAllPosts, fetchUsers } from "../API";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import { useLogin } from '../Context/LoginContext';
+import { useLog } from '../Context/LoginContext';
 import { Link, useNavigate } from "react-router-dom";
 
 export default function AllPosts() {
-const { isLoggedIn } = useLogin();
+const { isLoggedIn } = useLog();
 const [posts, setPosts] = useState([]);
 const [error, setError] = useState(null);
 const [isLoading, setIsLoading] = useState(true);
