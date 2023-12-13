@@ -78,7 +78,7 @@ export default function UserProfile() {
             <div className="gallery">
                 <h1 className="pageheader">{userName} Posts:</h1>
                 <ul>
-                    {isLoading && (
+                    {isLoggedIn && (
                 <Card sx={{ maxWidth: 645 }}>
                     {userPosts.map((post) => (
                         <>

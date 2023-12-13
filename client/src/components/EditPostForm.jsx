@@ -5,7 +5,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import { useLog, useLogin } from "../context/loginContext";
+import { useLog } from "../context/loginContext";
 
 export default function EditUserPost() {
   const { post_id } = useParams();
@@ -19,8 +19,8 @@ export default function EditUserPost() {
     book_author: "",
     book_summary: "",
   });
-const { isLoggedIn } = useLog();
-const [error, setError] = useState(null);
+  const { isLoggedIn } = useLog();
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   function handleEditFormClose() {
@@ -82,8 +82,8 @@ const [error, setError] = useState(null);
     <div>
       {userPosts.map((post) => (
         <div key={post.post_id}>
-          {isLoggedIn && ( 
-          <button onClick={() => handleEditFormOpen(post)}>Edit Post</button>
+          {isLoggedIn && (
+            <button onClick={() => handleEditFormOpen(post)}>Edit Post</button>
           )}
           {isFormOpen && (
             <>
@@ -146,22 +146,22 @@ const [error, setError] = useState(null);
                   }
                 />
                 <button onClick={handleEditFormSubmit}>Submit Changes</button>
-                {isLoggedIn && ( 
-                <button
-                  className="button"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    const shouldDelete = window.confirm(
-                      "Are you sure you want to delete this post?"
-                    );
-                    if (shouldDelete) {
-                      handleDelete(post_id);
-                      navigate("/blogs");
-                    }
-                  }}
-                >
-                  Delete
-                </button>
+                {isLoggedIn && (
+                  <button
+                    className="button"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const shouldDelete = window.confirm(
+                        "Are you sure you want to delete this post?"
+                      );
+                      if (shouldDelete) {
+                        handleDelete(post_id);
+                        navigate("/blogs");
+                      }
+                    }}
+                  >
+                    Delete
+                  </button>
                 )}
               </div>
             </>
